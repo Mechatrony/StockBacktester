@@ -8,31 +8,39 @@ using StockBacktester.Core.Models;
 
 namespace StockBacktester.ViewModels;
 
-public partial class 데이터표ViewModel : ObservableRecipient, INavigationAware
+public partial class ListDetailsViewModel : ObservableRecipient, INavigationAware
 {
     private readonly ISampleDataService _sampleDataService;
 
-    public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+    [ObservableProperty]
+    private SampleOrder? selected;
 
-    public 데이터표ViewModel(ISampleDataService sampleDataService)
+    public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+
+    public ListDetailsViewModel(ISampleDataService sampleDataService)
     {
         _sampleDataService = sampleDataService;
     }
 
     public async void OnNavigatedTo(object parameter)
     {
-        Source.Clear();
+        SampleItems.Clear();
 
         // TODO: Replace with real data.
-        var data = await _sampleDataService.GetGridDataAsync();
+        var data = await _sampleDataService.GetListDetailsDataAsync();
 
         foreach (var item in data)
         {
-            Source.Add(item);
+            SampleItems.Add(item);
         }
     }
 
     public void OnNavigatedFrom()
     {
+    }
+
+    public void EnsureItemSelected()
+    {
+        Selected ??= SampleItems.First();
     }
 }

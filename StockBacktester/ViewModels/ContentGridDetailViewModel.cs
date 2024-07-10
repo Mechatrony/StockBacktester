@@ -6,14 +6,14 @@ using StockBacktester.Core.Models;
 
 namespace StockBacktester.ViewModels;
 
-public partial class 콘텐츠표DetailViewModel : ObservableRecipient, INavigationAware
+public partial class ContentGridDetailViewModel : ObservableRecipient, INavigationAware
 {
     private readonly ISampleDataService _sampleDataService;
 
     [ObservableProperty]
     private SampleOrder? item;
 
-    public 콘텐츠표DetailViewModel(ISampleDataService sampleDataService)
+    public ContentGridDetailViewModel(ISampleDataService sampleDataService)
     {
         _sampleDataService = sampleDataService;
     }

@@ -6,16 +6,16 @@ using StockBacktester.ViewModels;
 
 namespace StockBacktester.Views;
 
-public sealed partial class 목록세부정보Page : Page
+public sealed partial class ListDetailsPage : Page
 {
-    public 목록세부정보ViewModel ViewModel
+    public ListDetailsViewModel ViewModel
     {
         get;
     }
 
-    public 목록세부정보Page()
+    public ListDetailsPage()
     {
-        ViewModel = App.GetService<목록세부정보ViewModel>();
+        ViewModel = App.GetService<ListDetailsViewModel>();
         InitializeComponent();
     }
 

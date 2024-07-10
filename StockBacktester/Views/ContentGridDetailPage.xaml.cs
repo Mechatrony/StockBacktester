@@ -8,16 +8,16 @@ using StockBacktester.ViewModels;
 
 namespace StockBacktester.Views;
 
-public sealed partial class 콘텐츠표DetailPage : Page
+public sealed partial class ContentGridDetailPage : Page
 {
-    public 콘텐츠표DetailViewModel ViewModel
+    public ContentGridDetailViewModel ViewModel
     {
         get;
     }
 
-    public 콘텐츠표DetailPage()
+    public ContentGridDetailPage()
     {
-        ViewModel = App.GetService<콘텐츠표DetailViewModel>();
+        ViewModel = App.GetService<ContentGridDetailViewModel>();
         InitializeComponent();
     }
 

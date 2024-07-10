@@ -72,14 +72,14 @@ public partial class App : Application
             // Views and ViewModels
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
-            services.AddTransient<목록세부정보ViewModel>();
-            services.AddTransient<목록세부정보Page>();
-            services.AddTransient<콘텐츠표DetailViewModel>();
-            services.AddTransient<콘텐츠표DetailPage>();
-            services.AddTransient<콘텐츠표ViewModel>();
-            services.AddTransient<콘텐츠표Page>();
-            services.AddTransient<데이터표ViewModel>();
-            services.AddTransient<데이터표Page>();
+            services.AddTransient<ListDetailsViewModel>();
+            services.AddTransient<ListDetailsPage>();
+            services.AddTransient<ContentGridDetailViewModel>();
+            services.AddTransient<ContentGridDetailPage>();
+            services.AddTransient<ContentGridViewModel>();
+            services.AddTransient<ContentGridPage>();
+            services.AddTransient<DataGridViewModel>();
+            services.AddTransient<DataGridPage>();
             services.AddTransient<MainViewModel>();
             services.AddTransient<MainPage>();
             services.AddTransient<ShellPage>();

@@ -15,10 +15,10 @@ public class PageService : IPageService
     public PageService()
     {
         Configure<MainViewModel, MainPage>();
-        Configure<데이터표ViewModel, 데이터표Page>();
-        Configure<콘텐츠표ViewModel, 콘텐츠표Page>();
-        Configure<콘텐츠표DetailViewModel, 콘텐츠표DetailPage>();
-        Configure<목록세부정보ViewModel, 목록세부정보Page>();
+        Configure<DataGridViewModel, DataGridPage>();
+        Configure<ContentGridViewModel, ContentGridPage>();
+        Configure<ContentGridDetailViewModel, ContentGridDetailPage>();
+        Configure<ListDetailsViewModel, ListDetailsPage>();
         Configure<SettingsViewModel, SettingsPage>();
     }
 

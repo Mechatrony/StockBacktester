@@ -5,7 +5,7 @@ using StockBacktester.Core.Models;
 
 namespace StockBacktester.Views;
 
-public sealed partial class 목록세부정보DetailControl : UserControl
+public sealed partial class ListDetailsDetailControl : UserControl
 {
     public SampleOrder? ListDetailsMenuItem
     {
@@ -13,16 +13,16 @@ public sealed partial class 목록세부정보DetailControl : UserControl
         set => SetValue(ListDetailsMenuItemProperty, value);
     }
 
-    public static readonly DependencyProperty ListDetailsMenuItemProperty = DependencyProperty.Register("ListDetailsMenuItem", typeof(SampleOrder), typeof(목록세부정보DetailControl), new PropertyMetadata(null, OnListDetailsMenuItemPropertyChanged));
+    public static readonly DependencyProperty ListDetailsMenuItemProperty = DependencyProperty.Register("ListDetailsMenuItem", typeof(SampleOrder), typeof(ListDetailsDetailControl), new PropertyMetadata(null, OnListDetailsMenuItemPropertyChanged));
 
-    public 목록세부정보DetailControl()
+    public ListDetailsDetailControl()
     {
         InitializeComponent();
     }
 
     private static void OnListDetailsMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is 목록세부정보DetailControl control)
+        if (d is ListDetailsDetailControl control)
         {
             control.ForegroundElement.ChangeView(0, 0, 1);
         }
