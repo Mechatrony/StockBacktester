@@ -35,14 +35,14 @@
 
         <DataTemplate x:Key="DetailsTemplate">
             <Grid>
-                <views:목록세부정보DetailControl ListDetailsMenuItem="{Binding}" />
+                <views:ListDetailsDetailControl ListDetailsMenuItem="{Binding}" />
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid>
                 <TextBlock
-                    x:Uid="목록세부정보_NoSelection"
+                    x:Uid="ListDetails_NoSelection"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     TextAlignment="Center"
@@ -84,7 +84,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <controls:ListDetailsView
-            x:Uid="목록세부정보"
+            x:Uid="ListDetails"
             x:Name="ListDetailsViewControl"
             BackButtonBehavior="Manual"
             Background="Transparent"
