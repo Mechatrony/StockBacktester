@@ -1,0 +1,89 @@
+<UserControl
+  x:Class="StockBacktester.Views.LogViewer"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="using:StockBacktester.Views"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:vm="using:StockBacktester.ViewModels"
+  xmlns:models="using:StockBacktester.Models"
+  xmlns:sys="using:System"
+  xmlns:interact="using:Microsoft.Xaml.Interactivity"
+  xmlns:interactcore="using:Microsoft.Xaml.Interactions.Core"
+  xmlns:behaviors="using:StockBacktester.Behaviors"
+  xmlns:converters="using:StockBacktester.Converters"
+  mc:Ignorable="d"
+  d:DataContext="{d:DesignInstance vm:LogViewerViewModel}">
+
+  <UserControl.Resources>
+    <converters:StringFormatter x:Key="StringFormatter"/>
+    <converters:EnumToStringConverter x:Key="EnumToStringConverter"/>
+
+    <DataTemplate x:Key="LogEntryTemplate" x:DataType="models:LogEntry">
+      <Grid ColumnDefinitions="Auto,*">
+        <TextBlock
+          Grid.Column="0"
+          Text="{Binding DateTime, Mode=OneTime,
+            Converter={StaticResource StringFormatter},
+            ConverterParameter=\{0:HH:mm:ss.fff\}}"
+          Foreground="{ThemeResource TextFillColorDisabled}"
+          VerticalAlignment="Center"/>
+
+        <TextBox
+          Grid.Column="1"
+          x:Name="LogContentTextBox"
+          Text="{Binding Message, Mode=OneTime}"
+          TextWrapping="Wrap"
+          IsReadOnly="True"
+          Background="Transparent"
+          BorderBrush="Transparent"
+          Margin="5 0 0 0">
+          <interact:Interaction.Behaviors>
+            <!--Info-->
+            <interactcore:DataTriggerBehavior
+              Binding="{Binding LogLevel, Mode=OneTime, Converter={StaticResource EnumToStringConverter}}"
+              Value="Info">
+              <interactcore:ChangePropertyAction
+                TargetObject="{Binding ElementName=LogContentTextBox}"
+                PropertyName="Foreground" Value="{ThemeResource TextFillColorPrimary}"/>
+            </interactcore:DataTriggerBehavior>
+            
+            <!--Warn-->
+            <interactcore:DataTriggerBehavior
+              Binding="{Binding LogLevel, Mode=OneTime, Converter={StaticResource EnumToStringConverter}}"
+              Value="Warn">
+              <interactcore:ChangePropertyAction
+                TargetObject="{Binding ElementName=LogContentTextBox}"
+                PropertyName="Foreground" Value="Yellow"/>
+            </interactcore:DataTriggerBehavior>
+
+            <!--Error-->
+            <interactcore:DataTriggerBehavior
+              Binding="{Binding LogLevel, Mode=OneTime, Converter={StaticResource EnumToStringConverter}}"
+              Value="Error">
+              <interactcore:ChangePropertyAction
+                TargetObject="{Binding ElementName=LogContentTextBox}"
+                PropertyName="Foreground" Value="Red"/>
+              <interactcore:ChangePropertyAction
+                TargetObject="{Binding ElementName=LogContentTextBox}"
+                PropertyName="FontWeight" Value="Bold"/>
+            </interactcore:DataTriggerBehavior>
+          </interact:Interaction.Behaviors>
+        </TextBox>
+      </Grid>
+    </DataTemplate>
+  </UserControl.Resources>
+
+  <ListBox
+    ItemsSource="{Binding LogEntries}"
+    ItemTemplate="{StaticResource LogEntryTemplate}">
+    <ListBox.ItemContainerStyle>
+      <Style TargetType="ListBoxItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+      </Style>
+    </ListBox.ItemContainerStyle>
+    <interact:Interaction.Behaviors>
+      <behaviors:AddingListBoxBehavior/>
+    </interact:Interaction.Behaviors>
+  </ListBox>
+</UserControl>

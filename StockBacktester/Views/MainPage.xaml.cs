@@ -4,16 +4,9 @@ using StockBacktester.ViewModels;
 
 namespace StockBacktester.Views;
 
-public sealed partial class MainPage : Page
-{
-    public MainViewModel ViewModel
-    {
-        get;
-    }
-
-    public MainPage()
-    {
-        ViewModel = App.GetService<MainViewModel>();
-        InitializeComponent();
-    }
+public sealed partial class MainPage : Page {
+  public MainPage() {
+    DataContext = App.GetService<MainViewModel>();
+    InitializeComponent();
+  }
 }
