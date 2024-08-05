@@ -9,7 +9,7 @@ public partial class MainViewModel : ObservableRecipient {
   }
 
   [RelayCommand]
-  private void AddLog() {
+  private void Test() {
     Logger.Log("Hello");
   }
 }

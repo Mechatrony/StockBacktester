@@ -79,7 +79,7 @@ public partial class App : Application {
   }
 
   private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e) {
-    Logger.Log(e.ToString(), LogLevel.Error);
+    Logger.Log(e?.ToString() ?? "Unknown exception", LogLevel.Error);
   }
 
   protected async override void OnLaunched(LaunchActivatedEventArgs args) {
