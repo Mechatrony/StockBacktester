@@ -2,3 +2,6 @@
 
 # CS0693: 형식 매개 변수가 외부 형식의 형식 매개 변수와 이름이 같습니다.
 dotnet_diagnostic.CS0693.severity = none
+
+# IDE0090: 'new(...)' 사용
+dotnet_diagnostic.IDE0090.severity = none
