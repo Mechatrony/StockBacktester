@@ -177,5 +177,4 @@ public partial class KisClient {
 
     return Array.Empty<주식잔고조회DTO>();
   }
-
 }

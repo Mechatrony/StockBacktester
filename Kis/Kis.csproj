@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <PackageId>eFriendOpenAPI</PackageId>
+        <PackageId>Kis</PackageId>
         <Version>1.0.9</Version>
         <Authors>SeongTae Jeong</Authors>
 

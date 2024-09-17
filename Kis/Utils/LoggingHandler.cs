@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kis.Extension;
+namespace Kis.Utils;
 
 // https://stackoverflow.com/questions/18924996/logging-request-response-messages-when-using-httpclient
 public class LoggingHandler : DelegatingHandler

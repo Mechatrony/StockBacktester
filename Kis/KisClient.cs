@@ -1,6 +1,7 @@
 ﻿using Cysharp.Web;
 using Kis.Dto;
-using Kis.Extension;
+using Kis.Enums;
+using Kis.Utils;
 using Kis.Packet;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -8,6 +9,9 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Runtime.Serialization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Kis;
 
@@ -98,8 +102,6 @@ public partial class KisClient {
     return client;
   }
 
-  // 주식현재가 시세[v1_국내주식-008]
-  // https://apiportal.koreainvestment.com/apiservice/apiservice-domestic-stock-quotations
   public async Task<주식현재가시세DTO?> 주식현재가시세(string FID입력종목코드, string FID조건시장분류코드 = "J") {
     using var client = CreateHttpClient("FHKST01010100");
 
@@ -120,31 +122,60 @@ public partial class KisClient {
     return null;
   }
 
-  public async Task<bool> IsOpenDay() {
-    DateTime dt = DateTime.Now;
-    string BASS_DT = dt.ToString("yyyyMMdd");
+  // 국내주식기간별시세
+  public async Task<Ohlcv[]?> FetchOhlcvAsync(
+    string stockCode, DateTime startDate, DateTime endDate, Timeframe timeframe = Timeframe.OneDay) {
+    using var client = CreateHttpClient("FHKST03010100");
 
-    국내휴장일조회DTO[]? dto = await 국내휴장일조회(BASS_DT);
-    if (dto == null) {
-      return false;
+    var query = new Dictionary<string, string>() {
+      { "FID_COND_MRKT_DIV_CODE", "J" },
+      { "FID_INPUT_ISCD", stockCode },
+      { "FID_INPUT_DATE_1", startDate.ToString("yyyyMMdd") },
+      { "FID_INPUT_DATE_2", endDate.ToString("yyyyMMdd") },
+      { "FID_PERIOD_DIV_CODE", timeframe.ToDescription() },
+      { "FID_ORG_ADJ_PRC", "0" },
+    };
+
+    string url
+      = "/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice?"
+      + WebSerializer.ToQueryString(query);
+
+    var response = await client.GetAsync(url);
+
+    if (!response.IsSuccessStatusCode) return null;
+
+    var responseBody = await response.Content.ReadFromJsonAsync<JsonObject>();
+    JsonArray output2 = responseBody!["output2"]!.AsArray();
+    Ohlcv[] ohlcvs = new Ohlcv[output2.Count];
+    int index = ohlcvs.Length - 1;
+
+    foreach (var data in output2) {
+      ohlcvs[index] = new Ohlcv(
+        DateTime.ParseExact(data!["stck_bsop_date"]!.ToString(), "yyyyMMdd", null),
+        double.Parse(data!["stck_oprc"]!.ToString()),
+        double.Parse(data!["stck_hgpr"]!.ToString()),
+        double.Parse(data!["stck_lwpr"]!.ToString()),
+        double.Parse(data!["stck_clpr"]!.ToString()),
+        UInt64.Parse(data!["acml_vol"]!.ToString()),
+        UInt64.Parse(data!["acml_tr_pbmn"]!.ToString())
+      );
+      --index;
     }
 
-    foreach (var item in dto) {
-      if (item.bass_dt == BASS_DT) {
-        return item.opnd_yn == "Y";
-      }
-    }
-
-    return false;
+    return ohlcvs;
   }
 
-  public async Task<국내휴장일조회DTO[]?> 국내휴장일조회(string 기준일자) {
+  public async Task<bool> IsOpenDay() {
+    return await IsOpenDay(DateTime.Now);
+  }
+
+  public async Task<bool> IsOpenDay(DateTime dateTime) {
     using var client = CreateHttpClient("CTCA0903R");
 
-    국내휴장일조회Query query = new() {
-      BASS_DT = 기준일자,
-      CTX_AREA_NK = "",
-      CTX_AREA_FK = "",
+    var query = new Dictionary<string, string>() {
+      { "BASS_DT", dateTime.ToString("yyyyMMdd") },
+      { "CTX_AREA_NK", "" },
+      { "CTX_AREA_FK", "" },
     };
 
     string url = "/uapi/domestic-stock/v1/quotations/chk-holiday?" + WebSerializer.ToQueryString(query);
@@ -152,11 +183,13 @@ public partial class KisClient {
     var response = await client.GetAsync(url);
 
     if (response.IsSuccessStatusCode) {
-      var respBody = await response.Content.ReadFromJsonAsync<HolidayCheckResponse<국내휴장일조회DTO>>();
-      return respBody?.output;
+      var respBody = await response.Content.ReadFromJsonAsync<JsonObject>();
+      if (respBody?["output"]?["opnd_yn"]?.ToString() == "Y") {
+        return true;
+      }
     }
 
-    return null;
+    return false;
   }
 
   public async Task<string> GetApprovalKey() {
@@ -229,7 +262,7 @@ public partial class KisClient {
   }
 
   private void WriteTokenToDiskCache(AccessToken accessToken) {
-    string jsonString = "";
+    string jsonString;
 
     try {
       jsonString = JsonSerializer.Serialize(accessToken);
@@ -255,7 +288,7 @@ public partial class KisClient {
     return tempFilePath;
   }
 
-  public string CreateSHA512(string strData) {
+  public static string CreateSHA512(string strData) {
     byte[] message = Encoding.UTF8.GetBytes(strData);
     byte[] hashValue = SHA512.HashData(message);
     return Convert.ToHexString(hashValue);

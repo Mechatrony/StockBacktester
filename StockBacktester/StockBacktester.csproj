@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\eFriendOpenAPI\eFriendOpenAPI.csproj" />
+    <ProjectReference Include="..\Kis\Kis.csproj" />
     <ProjectReference Include="..\StockBacktester.Core\StockBacktester.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
