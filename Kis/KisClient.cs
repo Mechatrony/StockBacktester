@@ -127,42 +127,63 @@ public partial class KisClient {
     string stockCode, DateTime startDate, DateTime endDate, Timeframe timeframe = Timeframe.OneDay) {
     using var client = CreateHttpClient("FHKST03010100");
 
-    var query = new Dictionary<string, string>() {
-      { "FID_COND_MRKT_DIV_CODE", "J" },
-      { "FID_INPUT_ISCD", stockCode },
-      { "FID_INPUT_DATE_1", startDate.ToString("yyyyMMdd") },
-      { "FID_INPUT_DATE_2", endDate.ToString("yyyyMMdd") },
-      { "FID_PERIOD_DIV_CODE", timeframe.ToDescription() },
-      { "FID_ORG_ADJ_PRC", "0" },
-    };
+    bool complete = false;
+    Ohlcv[] combinedOhlcvs = [];
+    DateTime queryStartDate = startDate;
+    DateTime queryEndDate = endDate;
 
-    string url
-      = "/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice?"
-      + WebSerializer.ToQueryString(query);
+    while (!complete) {
+      var query = new Dictionary<string, string>() {
+        { "FID_COND_MRKT_DIV_CODE", "J" },
+        { "FID_INPUT_ISCD", stockCode },
+        { "FID_INPUT_DATE_1", queryStartDate.ToString("yyyyMMdd") },
+        { "FID_INPUT_DATE_2", queryEndDate.ToString("yyyyMMdd") },
+        { "FID_PERIOD_DIV_CODE", timeframe.ToDescription() },
+        { "FID_ORG_ADJ_PRC", "0" },
+      };
 
-    var response = await client.GetAsync(url);
+      string url
+        = "/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice?"
+        + WebSerializer.ToQueryString(query);
 
-    if (!response.IsSuccessStatusCode) return null;
+      var response = await client.GetAsync(url);
 
-    var responseBody = await response.Content.ReadFromJsonAsync<JsonObject>();
-    JsonArray output2 = responseBody!["output2"]!.AsArray();
-    Ohlcv[] ohlcvs = new Ohlcv[output2.Count];
-    int index = ohlcvs.Length - 1;
+      if (!response.IsSuccessStatusCode) return null;
 
-    foreach (var data in output2) {
-      ohlcvs[index] = new Ohlcv(
-        DateTime.ParseExact(data!["stck_bsop_date"]!.ToString(), "yyyyMMdd", null),
-        double.Parse(data!["stck_oprc"]!.ToString()),
-        double.Parse(data!["stck_hgpr"]!.ToString()),
-        double.Parse(data!["stck_lwpr"]!.ToString()),
-        double.Parse(data!["stck_clpr"]!.ToString()),
-        UInt64.Parse(data!["acml_vol"]!.ToString()),
-        UInt64.Parse(data!["acml_tr_pbmn"]!.ToString())
-      );
-      --index;
+      JsonObject? responseBody = await response.Content.ReadFromJsonAsync<JsonObject>();
+      JsonArray jsonArray = responseBody!["output2"]!.AsArray();
+      Ohlcv[] chart1 = new Ohlcv[jsonArray.Count];
+      int index = chart1.Length - 1;
+
+      foreach (var data in jsonArray) {
+        chart1[index] = new Ohlcv(
+          DateTime.ParseExact(data!["stck_bsop_date"]!.ToString(), "yyyyMMdd", null),
+          double.Parse(data!["stck_oprc"]!.ToString()),
+          double.Parse(data!["stck_hgpr"]!.ToString()),
+          double.Parse(data!["stck_lwpr"]!.ToString()),
+          double.Parse(data!["stck_clpr"]!.ToString()),
+          UInt64.Parse(data!["acml_vol"]!.ToString()),
+          UInt64.Parse(data!["acml_tr_pbmn"]!.ToString())
+        );
+        --index;
+      }
+
+      // TODO: Ensure complete condition
+      if (chart1.FirstOrDefault()?.DateTime <= startDate) {
+        chart1 = chart1.Where(ohlcv => ohlcv.DateTime >= startDate).ToArray();
+        complete = true;
+      }
+
+      Ohlcv[] chart2 = combinedOhlcvs;
+      combinedOhlcvs = new Ohlcv[chart1.Length + chart2.Length];
+      chart1.CopyTo(combinedOhlcvs, 0);
+      chart2.CopyTo(combinedOhlcvs, chart1.Length);
+
+      queryEndDate = chart1.First().DateTime - TimeSpan.FromDays(1);
+      // TODO: Modify incorrect end date
     }
 
-    return ohlcvs;
+    return combinedOhlcvs;
   }
 
   public async Task<bool> IsOpenDay() {

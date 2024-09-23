@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 namespace StockBacktester.Models;
 
 public static class StockCodes {
-  public static string 삼성전자 = "005930";
+  public static readonly string 삼성전자 = "005930";
 }
