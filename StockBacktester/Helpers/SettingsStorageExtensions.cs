@@ -1,6 +1,4 @@
-﻿using StockBacktester.Core.Helpers;
-
-using Windows.Storage;
+﻿using Windows.Storage;
 using Windows.Storage.Streams;
 
 namespace StockBacktester.Helpers;

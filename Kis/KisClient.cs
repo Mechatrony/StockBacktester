@@ -123,12 +123,12 @@ public partial class KisClient {
   }
 
   // 국내주식기간별시세
-  public async Task<Ohlcv[]?> FetchOhlcvAsync(
+  public async Task<StockOhlcv[]?> FetchOhlcvAsync(
     string stockCode, DateTime startDate, DateTime endDate, Timeframe timeframe = Timeframe.OneDay) {
     using var client = CreateHttpClient("FHKST03010100");
 
     bool complete = false;
-    Ohlcv[] combinedOhlcvs = [];
+    StockOhlcv[] combinedOhlcvs = [];
     DateTime queryStartDate = startDate;
     DateTime queryEndDate = endDate;
 
@@ -152,11 +152,11 @@ public partial class KisClient {
 
       JsonObject? responseBody = await response.Content.ReadFromJsonAsync<JsonObject>();
       JsonArray jsonArray = responseBody!["output2"]!.AsArray();
-      Ohlcv[] chart1 = new Ohlcv[jsonArray.Count];
+      StockOhlcv[] chart1 = new StockOhlcv[jsonArray.Count];
       int index = chart1.Length - 1;
 
       foreach (var data in jsonArray) {
-        chart1[index] = new Ohlcv(
+        chart1[index] = new StockOhlcv(
           DateTime.ParseExact(data!["stck_bsop_date"]!.ToString(), "yyyyMMdd", null),
           double.Parse(data!["stck_oprc"]!.ToString()),
           double.Parse(data!["stck_hgpr"]!.ToString()),
@@ -174,8 +174,8 @@ public partial class KisClient {
         complete = true;
       }
 
-      Ohlcv[] chart2 = combinedOhlcvs;
-      combinedOhlcvs = new Ohlcv[chart1.Length + chart2.Length];
+      StockOhlcv[] chart2 = combinedOhlcvs;
+      combinedOhlcvs = new StockOhlcv[chart1.Length + chart2.Length];
       chart1.CopyTo(combinedOhlcvs, 0);
       chart2.CopyTo(combinedOhlcvs, chart1.Length);
 

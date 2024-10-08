@@ -2,7 +2,7 @@
 
 namespace Kis;
 
-public class Ohlcv(DateTime dateTime, double openPrice,
+public class StockOhlcv(DateTime dateTime, double openPrice,
   double highPrice, double lowPrice, double closePrice,
   UInt64 stockVolume, UInt64 currencyVolume) {
 

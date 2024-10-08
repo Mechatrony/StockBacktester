@@ -4,8 +4,6 @@ using Microsoft.UI.Xaml;
 
 using StockBacktester.Activation;
 using StockBacktester.Contracts.Services;
-using StockBacktester.Core.Contracts.Services;
-using StockBacktester.Core.Services;
 using StockBacktester.Models;
 using StockBacktester.Services;
 using StockBacktester.ViewModels;
@@ -51,22 +49,15 @@ public partial class App : Application {
       services.AddSingleton<INavigationService, NavigationService>();
 
       // Core Services
-      services.AddSingleton<ISampleDataService, SampleDataService>();
-      services.AddSingleton<IFileService, FileService>();
+      services.AddSingleton<FileService>();
 
       // Views and ViewModels
       services.AddTransient<SettingsViewModel>();
       services.AddTransient<SettingsPage>();
-      services.AddTransient<ListDetailsViewModel>();
-      services.AddTransient<ListDetailsPage>();
-      services.AddTransient<ContentGridDetailViewModel>();
-      services.AddTransient<ContentGridDetailPage>();
-      services.AddTransient<ContentGridViewModel>();
-      services.AddTransient<ContentGridPage>();
-      services.AddTransient<DataGridViewModel>();
-      services.AddTransient<DataGridPage>();
       services.AddTransient<MainViewModel>();
       services.AddTransient<MainPage>();
+      services.AddTransient<CoinPageViewModel>();
+      services.AddTransient<CoinPage>();
       services.AddTransient<ShellPage>();
       services.AddTransient<ShellViewModel>();
 

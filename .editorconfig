@@ -5,3 +5,6 @@ dotnet_diagnostic.CS0693.severity = none
 
 # IDE0090: 'new(...)' 사용
 dotnet_diagnostic.IDE0090.severity = none
+
+# IDE0028: 컬렉션 초기화 단순화
+dotnet_diagnostic.IDE0028.severity = none
