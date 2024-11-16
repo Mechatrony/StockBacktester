@@ -1,11 +1,12 @@
 ﻿namespace StockBacktester.Enums;
 
-public enum StrategyParameterType {
-  None = -1,
-  String,
-  DateTime,
-  Int,
-  Double,
-  DoublePercent,
-  Bool,
+public enum StrategyParameterType
+{
+    None = -1,
+    String,
+    DateTime,
+    Int,
+    Double,
+    DoublePercent,
+    Bool,
 }
