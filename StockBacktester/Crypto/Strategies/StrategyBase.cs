@@ -31,17 +31,17 @@ public abstract class StrategyBase
     public List<StrategyParameterViewModel> MinorParameters { get; set; } = new();
     public List<StrategyParameterViewModel> StrategyParameters { get; set; } = new();
 
-    public double OrderRatio { get; set; } = 0.98f;
-    public double MinimumOrderValuation { get; set; } = 5f;
-    public double LimitFeeRate { get; set; } = 0.02d * OVER_HUNDRED;
-    public double MarketFeeRate { get; set; } = 0.05d * OVER_HUNDRED;
+    public double OrderRatio { get; set; } = 0.98;
+    public double MinimumOrderValuation { get; set; } = 5.0;
+    public double LimitFeeRate { get; set; } = 0.02 * OVER_HUNDRED;
+    public double MarketFeeRate { get; set; } = 0.05 * OVER_HUNDRED;
 
     public string TargetCoins { get; set; } = string.Empty;
     public Timeframe Timeframe { get; set; } = Timeframe.OneDay;
     public DateTime StartDate { get; set; } = DateTime.Now.AddYears(-1).Date;
     public int TestDays { get; set; } = 365;
 
-    public double InitialBalance { get; set; } = 10000d;
+    public double InitialBalance { get; set; } = 10000.0;
     public int Leverage { get; set; } = 1;
     public bool UseLong { get; set; } = true;
     public bool UseShort { get; set; } = false;

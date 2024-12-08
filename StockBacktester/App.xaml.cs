@@ -7,6 +7,7 @@ using StockBacktester.Crypto.Exchange;
 using StockBacktester.Models;
 using StockBacktester.Services;
 using StockBacktester.ViewModels;
+using StockBacktester.ViewModels.Pages;
 using StockBacktester.Views;
 
 namespace StockBacktester;
@@ -48,7 +49,6 @@ public partial class App : Application
             services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
             services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
             services.AddTransient<INavigationViewService, NavigationViewService>();
-
             services.AddSingleton<IActivationService, ActivationService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
@@ -58,9 +58,9 @@ public partial class App : Application
             services.AddSingleton<BacktestService>();
 
             // Views and ViewModels
-            services.AddTransient<SettingsViewModel>();
+            services.AddTransient<SettingsPageViewModel>();
             services.AddTransient<SettingsPage>();
-            services.AddTransient<MainViewModel>();
+            services.AddTransient<MainPageViewModel>();
             services.AddTransient<MainPage>();
             services.AddTransient<CoinPageViewModel>();
             services.AddTransient<CoinPage>();
@@ -84,6 +84,6 @@ public partial class App : Application
     {
         base.OnLaunched(args);
 
-        await App.GetService<IActivationService>().ActivateAsync(args);
+        await GetService<IActivationService>().ActivateAsync(args);
     }
 }

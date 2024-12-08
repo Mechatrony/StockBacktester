@@ -1,11 +1,9 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-
 using StockBacktester.Contracts.Services;
 using StockBacktester.Helpers;
 using StockBacktester.ViewModels;
-
 using Windows.System;
 
 namespace StockBacktester.Views;
@@ -15,9 +13,9 @@ public sealed partial class ShellPage : Page
 {
     public ShellViewModel ViewModel { get; }
 
-    public ShellPage(ShellViewModel viewModel)
+    public ShellPage(ShellViewModel shellViewModel)
     {
-        ViewModel = viewModel;
+        ViewModel = shellViewModel;
         InitializeComponent();
 
         ViewModel.NavigationService.Frame = NavigationFrame;
@@ -32,7 +30,7 @@ public sealed partial class ShellPage : Page
         AppTitleBarText.Text = "AppDisplayName".GetLocalized();
     }
 
-    private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private void OnLoaded(object sender, RoutedEventArgs e)
     {
         TitleBarHelper.UpdateTitleBar(RequestedTheme);
 
@@ -58,7 +56,7 @@ public sealed partial class ShellPage : Page
 
     private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
     {
-        var keyboardAccelerator = new KeyboardAccelerator() { Key = key };
+        KeyboardAccelerator keyboardAccelerator = new KeyboardAccelerator() { Key = key };
 
         if (modifiers.HasValue)
         {
@@ -72,10 +70,8 @@ public sealed partial class ShellPage : Page
 
     private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
     {
-        var navigationService = App.GetService<INavigationService>();
-
-        var result = navigationService.GoBack();
-
+        INavigationService navigationService = App.GetService<INavigationService>();
+        bool result = navigationService.GoBack();
         args.Handled = result;
     }
 }

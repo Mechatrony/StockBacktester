@@ -11,15 +11,15 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 
-namespace StockBacktester.ViewModels;
+namespace StockBacktester.ViewModels.Pages;
 
-public partial class MainViewModel : ObservableRecipient
+public partial class MainPageViewModel : ObservableObject
 {
     private readonly FileService fileService;
     private readonly ExchangeService exchangeService;
     private readonly BacktestService backtestService;
-    private readonly BacktestResultViewModel backtestResultViewModel;
-    private readonly BacktestDetailsViewModel backtestDetailsViewModel;
+    private BacktestResultViewModel? backtestResultViewModel;
+    private BacktestDetailsViewModel? backtestDetailsViewModel;
 
     [ObservableProperty]
     private StrategyBase selectedStrategy;
@@ -64,23 +64,19 @@ public partial class MainViewModel : ObservableRecipient
         Timeframe.OneWeek,
     };
 
-    public MainViewModel(
+    public MainPageViewModel(
         FileService fileService,
         ExchangeService exchangeService,
-        BacktestService backtestService,
-        BacktestResultViewModel backtestResultViewModel,
-        BacktestDetailsViewModel backtestDetailsViewModel)
+        BacktestService backtestService)
     {
         this.fileService = fileService;
         this.exchangeService = exchangeService;
         this.backtestService = backtestService;
-        this.backtestResultViewModel = backtestResultViewModel;
-        this.backtestDetailsViewModel = backtestDetailsViewModel;
 
         this.exchangeService.Register<BinanceClient>();
         this.exchangeService.Exchange = CoinExchange.BinanceFutures;
 
-        PropertyChanged += MainViewModel_PropertyChanged;
+        PropertyChanged += MainPageViewModel_PropertyChanged;
 
         //Strategies.Add(new ReverseDca(backtestService, exchangeService));
         //Strategies.Add(new VolatilityBreakout(backtestService, exchangeService));
@@ -89,7 +85,7 @@ public partial class MainViewModel : ObservableRecipient
         SelectedStrategy = Strategies.First();
     }
 
-    private void MainViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    private void MainPageViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         switch (e.PropertyName)
         {

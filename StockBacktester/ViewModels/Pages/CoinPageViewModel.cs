@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StockBacktester.ViewModels;
+namespace StockBacktester.ViewModels.Pages;
 
 public partial class CoinPageViewModel : ObservableObject {
   [ObservableProperty]

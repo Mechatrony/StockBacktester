@@ -7,7 +7,7 @@
   xmlns:views="using:StockBacktester.Views"
   xmlns:vm="using:StockBacktester.ViewModels"
   mc:Ignorable="d"
-  d:DataContext="{d:DesignInstance vm:MainViewModel}"
+  d:DataContext="{d:DesignInstance vm:MainPageViewModel}"
   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
   <Grid ColumnDefinitions="*,200">

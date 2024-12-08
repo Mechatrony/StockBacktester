@@ -27,6 +27,7 @@
         Style="{StaticResource CaptionTextBlockStyle}"
         Margin="28,0,0,0"/>
     </Grid>
+
     <NavigationView
       x:Name="NavigationViewControl"
       Canvas.ZIndex="0"
@@ -37,6 +38,7 @@
       ExpandedModeThresholdWidth="1280"
       DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
       Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
+
       <NavigationView.MenuItems>
         <!--
         TODO: Update item titles by updating <x:Uid>.Content entries in Strings/en-us/Resources.resw.
@@ -47,19 +49,20 @@
         -->
         <NavigationViewItem
           x:Uid="Shell_Main"
-          helpers:NavigationHelper.NavigateTo="StockBacktester.ViewModels.MainViewModel">
+          helpers:NavigationHelper.NavigateTo="StockBacktester.ViewModels.Pages.MainPageViewModel">
           <NavigationViewItem.Icon>
             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;"/>
           </NavigationViewItem.Icon>
         </NavigationViewItem>
         <NavigationViewItem
           x:Uid="Shell_Coin"
-          helpers:NavigationHelper.NavigateTo="StockBacktester.ViewModels.CoinPageViewModel">
+          helpers:NavigationHelper.NavigateTo="StockBacktester.ViewModels.Pages.CoinPageViewModel">
           <NavigationViewItem.Icon>
             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;"/>
           </NavigationViewItem.Icon>
         </NavigationViewItem>
       </NavigationView.MenuItems>
+
       <NavigationView.HeaderTemplate>
         <DataTemplate>
           <Grid>
@@ -67,6 +70,7 @@
           </Grid>
         </DataTemplate>
       </NavigationView.HeaderTemplate>
+
       <i:Interaction.Behaviors>
         <behaviors:NavigationViewHeaderBehavior
           DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
@@ -81,6 +85,7 @@
           </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
         </behaviors:NavigationViewHeaderBehavior>
       </i:Interaction.Behaviors>
+
       <Grid Margin="{StaticResource NavigationViewPageContentMargin}">
         <Frame x:Name="NavigationFrame" />
       </Grid>

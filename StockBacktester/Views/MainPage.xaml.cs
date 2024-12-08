@@ -1,12 +1,13 @@
 ﻿using Microsoft.UI.Xaml.Controls;
-
-using StockBacktester.ViewModels;
+using StockBacktester.ViewModels.Pages;
 
 namespace StockBacktester.Views;
 
-public sealed partial class MainPage : Page {
-  public MainPage() {
-    DataContext = App.GetService<MainViewModel>();
-    InitializeComponent();
-  }
+public sealed partial class MainPage : Page
+{
+    public MainPage(MainPageViewModel mainPageViewModel)
+    {
+        DataContext = mainPageViewModel;
+        InitializeComponent();
+    }
 }

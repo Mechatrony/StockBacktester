@@ -1,87 +1,83 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-using Microsoft.UI.Xaml.Controls;
-
+﻿using Microsoft.UI.Xaml.Controls;
 using StockBacktester.Contracts.Services;
 using StockBacktester.Helpers;
-using StockBacktester.ViewModels;
+using StockBacktester.ViewModels.Pages;
+using System.Diagnostics.CodeAnalysis;
 
 namespace StockBacktester.Services;
 
 public class NavigationViewService : INavigationViewService
 {
-    private readonly INavigationService _navigationService;
+    private readonly INavigationService navigationService;
+    private readonly IPageService pageService;
+    private NavigationView? navigationView;
 
-    private readonly IPageService _pageService;
-
-    private NavigationView? _navigationView;
-
-    public IList<object>? MenuItems => _navigationView?.MenuItems;
-
-    public object? SettingsItem => _navigationView?.SettingsItem;
+    public IList<object>? MenuItems => navigationView?.MenuItems;
+    public object? SettingsItem => navigationView?.SettingsItem;
 
     public NavigationViewService(INavigationService navigationService, IPageService pageService)
     {
-        _navigationService = navigationService;
-        _pageService = pageService;
+        this.navigationService = navigationService;
+        this.pageService = pageService;
     }
 
-    [MemberNotNull(nameof(_navigationView))]
+    [MemberNotNull(nameof(NavigationViewService.navigationView))]
     public void Initialize(NavigationView navigationView)
     {
-        _navigationView = navigationView;
-        _navigationView.BackRequested += OnBackRequested;
-        _navigationView.ItemInvoked += OnItemInvoked;
+        this.navigationView = navigationView;
+        this.navigationView.BackRequested += OnBackRequested;
+        this.navigationView.ItemInvoked += OnItemInvoked;
     }
 
     public void UnregisterEvents()
     {
-        if (_navigationView != null)
+        if (navigationView != null)
         {
-            _navigationView.BackRequested -= OnBackRequested;
-            _navigationView.ItemInvoked -= OnItemInvoked;
+            navigationView.BackRequested -= OnBackRequested;
+            navigationView.ItemInvoked -= OnItemInvoked;
         }
     }
 
     public NavigationViewItem? GetSelectedItem(Type pageType)
     {
-        if (_navigationView != null)
+        if (navigationView != null)
         {
-            return GetSelectedItem(_navigationView.MenuItems, pageType) ?? GetSelectedItem(_navigationView.FooterMenuItems, pageType);
+            return GetSelectedItem(navigationView.MenuItems, pageType) ?? GetSelectedItem(navigationView.FooterMenuItems, pageType);
         }
 
         return null;
     }
 
-    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => _navigationService.GoBack();
+    private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        => navigationService.GoBack();
 
     private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
     {
         if (args.IsSettingsInvoked)
         {
-            _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
+            navigationService.NavigateTo(typeof(SettingsPageViewModel).FullName!);
         }
         else
         {
-            var selectedItem = args.InvokedItemContainer as NavigationViewItem;
+            NavigationViewItem? selectedItem = args.InvokedItemContainer as NavigationViewItem;
 
             if (selectedItem?.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
             {
-                _navigationService.NavigateTo(pageKey);
+                navigationService.NavigateTo(pageKey);
             }
         }
     }
 
     private NavigationViewItem? GetSelectedItem(IEnumerable<object> menuItems, Type pageType)
     {
-        foreach (var item in menuItems.OfType<NavigationViewItem>())
+        foreach (NavigationViewItem item in menuItems.OfType<NavigationViewItem>())
         {
             if (IsMenuItemForPageType(item, pageType))
             {
                 return item;
             }
 
-            var selectedChild = GetSelectedItem(item.MenuItems, pageType);
+            NavigationViewItem? selectedChild = GetSelectedItem(item.MenuItems, pageType);
             if (selectedChild != null)
             {
                 return selectedChild;
@@ -95,7 +91,7 @@ public class NavigationViewService : INavigationViewService
     {
         if (menuItem.GetValue(NavigationHelper.NavigateToProperty) is string pageKey)
         {
-            return _pageService.GetPageType(pageKey) == sourcePageType;
+            return pageService.GetPageType(pageKey) == sourcePageType;
         }
 
         return false;

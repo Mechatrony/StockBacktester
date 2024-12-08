@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-
 using StockBacktester.Contracts.Services;
 using StockBacktester.Views;
 
@@ -11,19 +10,11 @@ public partial class ShellViewModel : ObservableRecipient
 {
     [ObservableProperty]
     private bool isBackEnabled;
-
     [ObservableProperty]
     private object? selected;
 
-    public INavigationService NavigationService
-    {
-        get;
-    }
-
-    public INavigationViewService NavigationViewService
-    {
-        get;
-    }
+    public INavigationService NavigationService { get; }
+    public INavigationViewService NavigationViewService { get; }
 
     public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
     {
@@ -42,7 +33,7 @@ public partial class ShellViewModel : ObservableRecipient
             return;
         }
 
-        var selectedItem = NavigationViewService.GetSelectedItem(e.SourcePageType);
+        NavigationViewItem? selectedItem = NavigationViewService.GetSelectedItem(e.SourcePageType);
         if (selectedItem != null)
         {
             Selected = selectedItem;
