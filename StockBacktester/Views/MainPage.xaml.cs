@@ -5,9 +5,9 @@ namespace StockBacktester.Views;
 
 public sealed partial class MainPage : Page
 {
-    public MainPage(MainPageViewModel mainPageViewModel)
+    public MainPage()
     {
-        DataContext = mainPageViewModel;
+        DataContext = App.GetService<MainPageViewModel>();
         InitializeComponent();
     }
 }

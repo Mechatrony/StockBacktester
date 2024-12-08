@@ -1,7 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using StockBacktester.Contracts.Services;
 using StockBacktester.ViewModels.Pages;
-using StockBacktester.Views;
 
 namespace StockBacktester.Activation;
 
