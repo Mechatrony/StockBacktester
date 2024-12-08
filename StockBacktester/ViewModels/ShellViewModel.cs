@@ -11,7 +11,7 @@ public partial class ShellViewModel : ObservableRecipient
     [ObservableProperty]
     private bool isBackEnabled;
     [ObservableProperty]
-    private object? selected;
+    private object? selectedNavigationViewItem;
 
     public INavigationService NavigationService { get; }
     public INavigationViewService NavigationViewService { get; }
@@ -29,14 +29,14 @@ public partial class ShellViewModel : ObservableRecipient
 
         if (e.SourcePageType == typeof(SettingsPage))
         {
-            Selected = NavigationViewService.SettingsItem;
+            SelectedNavigationViewItem = NavigationViewService.SettingsItem;
             return;
         }
 
         NavigationViewItem? selectedItem = NavigationViewService.GetSelectedItem(e.SourcePageType);
         if (selectedItem != null)
         {
-            Selected = selectedItem;
+            SelectedNavigationViewItem = selectedItem;
         }
     }
 }

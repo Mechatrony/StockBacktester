@@ -8,9 +8,9 @@ public sealed partial class SettingsPage : Page
 {
     public SettingsPageViewModel ViewModel { get; }
 
-    public SettingsPage(SettingsPageViewModel settingsPageViewModel)
+    public SettingsPage()
     {
-        ViewModel = settingsPageViewModel;
+        ViewModel = App.GetService<SettingsPageViewModel>();
         InitializeComponent();
     }
 }

@@ -33,11 +33,11 @@
       Canvas.ZIndex="0"
       IsBackButtonVisible="Visible"
       IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-      SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
+      SelectedItem="{x:Bind ViewModel.SelectedNavigationViewItem, Mode=OneWay}"
       IsSettingsVisible="True"
       ExpandedModeThresholdWidth="1280"
       DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
-      Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
+      Header="{x:Bind ((ContentControl)ViewModel.SelectedNavigationViewItem).Content, Mode=OneWay}">
 
       <NavigationView.MenuItems>
         <!--
@@ -73,7 +73,7 @@
 
       <i:Interaction.Behaviors>
         <behaviors:NavigationViewHeaderBehavior
-          DefaultHeader="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
+          DefaultHeader="{x:Bind ((ContentControl)ViewModel.SelectedNavigationViewItem).Content, Mode=OneWay}">
           <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
             <DataTemplate>
               <Grid>
