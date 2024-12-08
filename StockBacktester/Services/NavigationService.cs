@@ -1,13 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-using CommunityToolkit.WinUI.UI.Animations;
-
+﻿using CommunityToolkit.WinUI.Animations;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-
 using StockBacktester.Contracts.Services;
 using StockBacktester.Contracts.ViewModels;
 using StockBacktester.Helpers;
+using System.Diagnostics.CodeAnalysis;
 
 namespace StockBacktester.Services;
 
@@ -126,5 +123,6 @@ public class NavigationService : INavigationService
         }
     }
 
-    public void SetListDataItemForNextConnectedAnimation(object item) => Frame.SetListDataItemForNextConnectedAnimation(item);
+    public void SetListDataItemForNextConnectedAnimation(object item)
+        => Frame?.SetListDataItemForNextConnectedAnimation(item);
 }

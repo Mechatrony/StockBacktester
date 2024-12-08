@@ -85,7 +85,7 @@ public partial class MainViewModel : ObservableRecipient
         //Strategies.Add(new ReverseDca(backtestService, exchangeService));
         //Strategies.Add(new VolatilityBreakout(backtestService, exchangeService));
         //Strategies.Add(new DualMomentum(backtestService, exchangeService));
-        //Strategies.Add(new FourHma(backtestService, exchangeService));
+        Strategies.Add(new FourHmaStrategy(backtestService, exchangeService));
         SelectedStrategy = Strategies.First();
     }
 
