@@ -24,6 +24,7 @@ public enum MarketType
 
 public enum Timeframe
 {
+    [Description("1s")]OneSecond,
     [Description("1m")]OneMinute,
     [Description("3m")]ThreeMinutes,
     [Description("5m")]FiveMinutes,

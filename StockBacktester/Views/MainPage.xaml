@@ -5,9 +5,121 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:views="using:StockBacktester.Views"
-  xmlns:vm="using:StockBacktester.ViewModels.Pages"
+  xmlns:vmPages="using:StockBacktester.ViewModels.Pages"
+  xmlns:vm="using:StockBacktester.ViewModels"
+  xmlns:converters="using:StockBacktester.Converters"
+  xmlns:templateSelectors="using:StockBacktester.TemplateSelectors"
   mc:Ignorable="d"
-  d:DataContext="{d:DesignInstance vm:MainPageViewModel}">
+  d:DataContext="{d:DesignInstance vmPages:MainPageViewModel}">
+
+  <Page.Resources>
+    <converters:TimeframeToStringConverter x:Key="TimeframeToStringConverter"/>
+    <converters:TimeframeArrayToStringArrayConverter x:Key="TimeframeArrayToStringArrayConverter"/>
+    <Style TargetType="ItemsControl" x:Key="ParameterViewerStyle">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+              <ItemsPresenter/>
+            </ScrollViewer>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="ItemsPanel">
+        <Setter.Value>
+          <ItemsPanelTemplate>
+            <VirtualizingStackPanel/>
+          </ItemsPanelTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <DataTemplate x:Key="StringParameterTemplate">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding DisplayName}"/>
+        <TextBox Grid.Row="1" Text="{Binding StringValue}"/>
+      </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DateTimeParameterTemplate">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding DisplayName}"/>
+        <DatePicker Grid.Row="1" SelectedDate="{Binding DateTimeValue}"/>
+      </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="IntParameterTemplate">
+      <!-- TODO: Use NumberBox Header instead of TextBlock -->
+      <Grid>
+        <!--<Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>-->
+        <!--<TextBlock Grid.Row="0" Text="{Binding DisplayName}"/>-->
+        <NumberBox
+          Grid.Row="1"
+          Value="{Binding IntValue}"
+          Header="{Binding DisplayName}"
+          SpinButtonPlacementMode="Inline"/>
+      </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DoubleParameterTemplate">
+      <Grid>
+        <!--<Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding DisplayName}"/>-->
+        <NumberBox
+          Grid.Row="1"
+          Value="{Binding DoubleValue}"
+          Header="{Binding DisplayName}"
+          SmallChange="0.1"
+          SpinButtonPlacementMode="Inline"/>
+      </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="DoublePercentParameterTemplate">
+      <Grid>
+        <!--<Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding DisplayName}"/>-->
+        <NumberBox
+          Grid.Row="1"
+          Value="{Binding DoublePercentValue}"
+          Header="{Binding DisplayName}"
+          SmallChange="0.1"
+          SpinButtonPlacementMode="Inline"/>
+      </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="BoolParameterTemplate">
+      <CheckBox Content="{Binding DisplayName}" IsChecked="{Binding BoolValue}"/>
+    </DataTemplate>
+
+    <templateSelectors:StrategyParameterTemplateSelector
+      x:Key="ParameterTemplateSelector"
+      StringTemplate="{StaticResource StringParameterTemplate}"
+      DateTimeTemplate="{StaticResource DateTimeParameterTemplate}"
+      IntTemplate="{StaticResource IntParameterTemplate}"
+      DoubleTemplate="{StaticResource DoubleParameterTemplate}"
+      DoublePercentTemplate="{StaticResource DoublePercentParameterTemplate}"
+      BoolTemplate="{StaticResource BoolParameterTemplate}"/>
+
+    <DataTemplate x:Key="StrategyParameterTemplate" x:DataType="vm:StrategyParameterViewModel">
+      <ContentControl
+        Grid.Row="1"
+        Content="{Binding Value}"
+        ContentTemplateSelector="{StaticResource ParameterTemplateSelector}"
+        Margin="{StaticResource XSmallTopMargin}"/>
+    </DataTemplate>
+  </Page.Resources>
 
   <Grid RowDefinitions="*, auto" RowSpacing="10" Padding="0 0 0 20">
     <views:LogViewer Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
