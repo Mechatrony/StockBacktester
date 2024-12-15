@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace StockBacktester.ViewModels.Pages;
 
-public partial class CoinPageViewModel : ObservableObject {
-  [ObservableProperty]
-  private StrategyBase selectedStrategy;
+public partial class CoinPageViewModel : ObservableObject
+{
+    [ObservableProperty]
+    private StrategyBase? selectedStrategy;
 }

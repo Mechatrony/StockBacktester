@@ -4,9 +4,11 @@ using StockBacktester.Models;
 
 namespace StockBacktester.ViewModels;
 
-public class LogViewerViewModel : ObservableObject {
-  public static IReadOnlyObservableCollection<LogEntry> LogEntries => Logger.LogEntries.AsObservable;
+public class LogViewerViewModel : ObservableObject
+{
+    public static IReadOnlyObservableCollection<LogEntry> LogEntries => Logger.LogEntries.AsObservable;
 
-  public LogViewerViewModel() {
-  }
+    public LogViewerViewModel()
+    {
+    }
 }

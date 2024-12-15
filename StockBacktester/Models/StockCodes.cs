@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockBacktester.Models;
 
-public static class StockCodes {
-  public static readonly string 삼성전자 = "005930";
+public static class StockCodes
+{
+    public static readonly string 삼성전자 = "005930";
 }

@@ -11,7 +11,7 @@ public class ExchangeService
     {
         if (typeof(T) == typeof(BinanceClient))
         {
-            var binanceClient = new BinanceClient();
+            BinanceClient binanceClient = new BinanceClient();
             exchangeClients.TryAdd(CoinExchange.BinanceFutures, binanceClient);
             exchangeClients.TryAdd(CoinExchange.BinanceSpot, binanceClient);
         }

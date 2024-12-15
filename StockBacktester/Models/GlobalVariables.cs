@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace StockBacktester.Models;
 
-public static class GlobalVariables {
-  public static string KeyFilePath { get; } = "C:\\LicenseKeys";
-  public static string DbRootPath { get; set; } = "D:\\DB";
+public static class GlobalVariables
+{
+    public static string KeyFilePath { get; } = "C:\\LicenseKeys";
+    public static string DbRootPath { get; set; } = "D:\\DB";
 }

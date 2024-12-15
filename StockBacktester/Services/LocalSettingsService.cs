@@ -2,69 +2,84 @@
 using StockBacktester.Contracts.Services;
 using StockBacktester.Helpers;
 using StockBacktester.Models;
-using Windows.ApplicationModel;
 using Windows.Storage;
 
 namespace StockBacktester.Services;
 
-public class LocalSettingsService : ILocalSettingsService {
-  private const string _defaultApplicationDataFolder = "StockBacktester/ApplicationData";
-  private const string _defaultLocalSettingsFile = "LocalSettings.json";
+public class LocalSettingsService : ILocalSettingsService
+{
+    private const string defaultApplicationDataFolder = "StockBacktester/ApplicationData";
+    private const string defaultLocalSettingsFile = "LocalSettings.json";
 
-  private readonly FileService _fileService;
-  private readonly LocalSettingsOptions _options;
+    private readonly FileService fileService;
+    private readonly LocalSettingsOptions options;
 
-  private readonly string _localApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-  private readonly string _applicationDataFolder;
-  private readonly string _localsettingsFile;
+    private readonly string localApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+    private readonly string applicationDataFolder;
+    private readonly string localsettingsFile;
 
-  private IDictionary<string, object> _settings;
+    private IDictionary<string, object> settings;
 
-  private bool _isInitialized;
+    private bool isInitialized;
 
-  public LocalSettingsService(FileService fileService, IOptions<LocalSettingsOptions> options) {
-    _fileService = fileService;
-    _options = options.Value;
+    public LocalSettingsService(FileService fileService, IOptions<LocalSettingsOptions> options)
+    {
+        this.fileService = fileService;
+        this.options = options.Value;
 
-    _applicationDataFolder = Path.Combine(_localApplicationData, _options.ApplicationDataFolder ?? _defaultApplicationDataFolder);
-    _localsettingsFile = _options.LocalSettingsFile ?? _defaultLocalSettingsFile;
+        applicationDataFolder = Path.Combine(localApplicationData, this.options.ApplicationDataFolder ?? defaultApplicationDataFolder);
+        localsettingsFile = this.options.LocalSettingsFile ?? defaultLocalSettingsFile;
 
-    _settings = new Dictionary<string, object>();
-  }
-
-  private async Task InitializeAsync() {
-    if (!_isInitialized) {
-      _settings = await Task.Run(() => _fileService.ReadJson<IDictionary<string, object>>(_applicationDataFolder, _localsettingsFile)) ?? new Dictionary<string, object>();
-
-      _isInitialized = true;
-    }
-  }
-
-  public async Task<T?> ReadSettingAsync<T>(string key) {
-    if (RuntimeHelper.IsMSIX) {
-      if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var obj)) {
-        return await Json.ToObjectAsync<T>((string)obj);
-      }
-    } else {
-      await InitializeAsync();
-
-      if (_settings != null && _settings.TryGetValue(key, out var obj)) {
-        return await Json.ToObjectAsync<T>((string)obj);
-      }
+        settings = new Dictionary<string, object>();
     }
 
-    return default;
-  }
+    private async Task InitializeAsync()
+    {
+        if (isInitialized)
+            return;
 
-  public async Task SaveSettingAsync<T>(string key, T value) {
-    if (RuntimeHelper.IsMSIX) {
-      ApplicationData.Current.LocalSettings.Values[key] = await Json.StringifyAsync(value);
-    } else {
-      await InitializeAsync();
-
-      _settings[key] = await Json.StringifyAsync(value);
-
-      await Task.Run(() => _fileService.SaveJson(_applicationDataFolder, _localsettingsFile, _settings));
+        // TODO: Is async needed?
+        settings =
+            await Task.Run(() => fileService.ReadJson<IDictionary<string, object>?>(applicationDataFolder, localsettingsFile))
+            ?? new Dictionary<string, object>();
+        isInitialized = true;
     }
-  }
+
+    public async Task<T?> ReadSettingAsync<T>(string key)
+    {
+        if (RuntimeHelper.IsMSIX)
+        {
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var obj))
+            {
+                return await Json.ToObjectAsync<T>((string)obj);
+            }
+        }
+        else
+        {
+            await InitializeAsync();
+
+            if (settings != null && settings.TryGetValue(key, out var obj))
+            {
+                return await Json.ToObjectAsync<T>((string)obj);
+            }
+        }
+
+        return default;
+    }
+
+    public async Task SaveSettingAsync<T>(string key, T value)
+    {
+        if (RuntimeHelper.IsMSIX)
+        {
+            ApplicationData.Current.LocalSettings.Values[key] = await Json.StringifyAsync(value);
+        }
+        else
+        {
+            await InitializeAsync();
+
+            settings[key] = await Json.StringifyAsync(value);
+
+            await Task.Run(() => fileService.SaveJson(applicationDataFolder, localsettingsFile, settings));
+        }
+    }
 }
