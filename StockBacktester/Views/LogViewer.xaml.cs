@@ -9,7 +9,6 @@ public sealed partial class LogViewer : UserControl
 
     public LogViewer()
     {
-        //ViewModel = new LogViewerViewModel();
         DataContext = new LogViewerViewModel();
         InitializeComponent();
     }

@@ -7,9 +7,10 @@
   xmlns:views="using:StockBacktester.Views"
   xmlns:vm="using:StockBacktester.ViewModels.Pages"
   mc:Ignorable="d"
-  d:DataContext="{d:DesignInstance vm:MainPageViewModel}"
+  d:DataContext="{d:DesignInstance vm:CoinPageViewModel}"
   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-  <Grid ColumnDefinitions="*,200">
+  <Grid>
+    <TextBlock Text="{Binding Title}"/>
   </Grid>
 </Page>

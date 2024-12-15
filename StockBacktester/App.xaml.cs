@@ -35,42 +35,42 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        Host = Microsoft.Extensions.Hosting.Host.
-        CreateDefaultBuilder().
-        UseContentRoot(AppContext.BaseDirectory).
-        ConfigureServices((context, services) =>
-        {
-            // Default Activation Handler
-            services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
+        Host = Microsoft.Extensions.Hosting.Host
+            .CreateDefaultBuilder()
+            .UseContentRoot(AppContext.BaseDirectory)
+            .ConfigureServices((context, services) =>
+                {
+                    // Default Activation Handler
+                    services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
 
-            // Other Activation Handlers
+                    // Other Activation Handlers
 
-            // Services
-            services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
-            services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
-            services.AddTransient<INavigationViewService, NavigationViewService>();
-            services.AddSingleton<IActivationService, ActivationService>();
-            services.AddSingleton<IPageService, PageService>();
-            services.AddSingleton<INavigationService, NavigationService>();
+                    // Services
+                    services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
+                    services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
+                    services.AddTransient<INavigationViewService, NavigationViewService>();
+                    services.AddSingleton<IActivationService, ActivationService>();
+                    services.AddSingleton<IPageService, PageService>();
+                    services.AddSingleton<INavigationService, NavigationService>();
 
-            services.AddSingleton<FileService>();
-            services.AddSingleton<ExchangeService>();
-            services.AddSingleton<BacktestService>();
+                    services.AddSingleton<FileService>();
+                    services.AddSingleton<ExchangeService>();
+                    services.AddSingleton<BacktestService>();
 
-            // Views and ViewModels
-            services.AddTransient<SettingsPageViewModel>();
-            services.AddTransient<SettingsPage>();
-            services.AddTransient<MainPageViewModel>();
-            services.AddTransient<MainPage>();
-            services.AddTransient<CoinPageViewModel>();
-            services.AddTransient<CoinPage>();
-            services.AddTransient<ShellPage>();
-            services.AddTransient<ShellViewModel>();
+                    // Views and ViewModels
+                    services.AddTransient<ShellPage>();
+                    services.AddTransient<ShellViewModel>();
+                    services.AddTransient<SettingsPageViewModel>();
+                    services.AddTransient<SettingsPage>();
+                    services.AddTransient<MainPageViewModel>();
+                    services.AddTransient<MainPage>();
+                    services.AddTransient<CoinPageViewModel>();
+                    services.AddTransient<CoinPage>();
 
-            // Configuration
-            services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
-        }).
-        Build();
+                    // Configuration
+                    services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
+                })
+            .Build();
 
         UnhandledException += App_UnhandledException;
     }
