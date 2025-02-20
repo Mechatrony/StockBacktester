@@ -192,7 +192,6 @@ public class BinanceClient : ExchangeClient
     public override async Task<List<Ohlcv>> FetchOhlcvAsync(
         string name, Timeframe timeframe, DateTime startTime, DateTime endTime)
     {
-
         while (isBusy)
         {
             await Task.Delay(10);
@@ -209,9 +208,9 @@ public class BinanceClient : ExchangeClient
             var apiResult = MarketType switch
             {
                 MarketType.Spot => await restClient.SpotApi.ExchangeData.GetKlinesAsync(
-                    symbol, (KlineInterval)timeframe, dateTime, limit: 1500),
+                    symbol, ToKlineInterval(timeframe), dateTime, limit: 1500),
                 MarketType.Futures => await restClient.UsdFuturesApi.ExchangeData.GetKlinesAsync(
-                    symbol, (KlineInterval)timeframe, dateTime, limit: 1500),
+                    symbol, ToKlineInterval(timeframe), dateTime, limit: 1500),
                 _ => throw new Exception()
             };
 
@@ -361,6 +360,30 @@ public class BinanceClient : ExchangeClient
     public override async Task TestFuncAsync()
     {
         await Task.CompletedTask;
+    }
+
+    public static KlineInterval ToKlineInterval(Timeframe timeframe)
+    {
+        return timeframe switch
+        {
+            Timeframe.OneSecond => KlineInterval.OneSecond,
+            Timeframe.OneMinute => KlineInterval.OneMinute,
+            Timeframe.ThreeMinutes => KlineInterval.ThreeMinutes,
+            Timeframe.FiveMinutes => KlineInterval.FiveMinutes,
+            Timeframe.FifteenMinutes => KlineInterval.FifteenMinutes,
+            Timeframe.ThirtyMinutes => KlineInterval.ThirtyMinutes,
+            Timeframe.OneHour => KlineInterval.OneHour,
+            Timeframe.TwoHours => KlineInterval.TwoHour,
+            Timeframe.FourHours => KlineInterval.FourHour,
+            Timeframe.SixHours => KlineInterval.SixHour,
+            Timeframe.EightHours => KlineInterval.EightHour,
+            Timeframe.TwelveHours => KlineInterval.TwelveHour,
+            Timeframe.OneDay => KlineInterval.OneDay,
+            Timeframe.ThreeDays => KlineInterval.ThreeDay,
+            Timeframe.OneWeek => KlineInterval.OneWeek,
+            Timeframe.OneMonth => KlineInterval.OneMonth,
+            _ => throw new InvalidDataException()
+        };
     }
 }
 

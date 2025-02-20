@@ -218,33 +218,33 @@ public abstract class StrategyBase
         }
 
         // Load Ohlcvs
-        var tasks = new List<Task>();
+        List<Task> tasks = new();
         foreach (string name in targetCoinNames)
         {
             Task task = Task.Run(
-        async () =>
-        {
-            var ohlcvSeries = await exchangeService.LoadOhlcvAsync(
-            name, Timeframe, loadStartDate, EndDate);
-            Logger.Log($"Loaded {ohlcvSeries.Count} {name} candles");
-            backtestService.Ohlcvs[name] = ohlcvSeries;
-            backtestService.OpenPrices[name] = ohlcvSeries
-                .Select(ohlcv => new KeyValuePair<DateTime, double>(ohlcv.DateTime, ohlcv.OpenPrice))
-                .ToDictionary();
-            backtestService.HighPrices[name] = ohlcvSeries
-                .Select(ohlcv => new KeyValuePair<DateTime, double>(ohlcv.DateTime, ohlcv.HighPrice))
-                .ToDictionary();
-            backtestService.LowPrices[name] = ohlcvSeries
-                .Select(ohlcv => new KeyValuePair<DateTime, double>(ohlcv.DateTime, ohlcv.LowPrice))
-                .ToDictionary();
-            backtestService.ClosePrices[name] = ohlcvSeries
-                .Select(ohlcv => new KeyValuePair<DateTime, double>(ohlcv.DateTime, ohlcv.ClosePrice))
-                .ToDictionary();
-            backtestService.Volumes[name] = ohlcvSeries
-                .Select(ohlcv => new KeyValuePair<DateTime, double>(ohlcv.DateTime, ohlcv.Volume))
-                .ToDictionary();
-        }
-      );
+                async () =>
+                {
+                    List<Ohlcv> ohlcvSeries = await exchangeService
+                        .LoadOhlcvAsync(name, Timeframe, loadStartDate, EndDate);
+                    Logger.Log($"Loaded {ohlcvSeries.Count} {name} candles");
+                    backtestService.Ohlcvs[name] = ohlcvSeries;
+                    backtestService.OpenPrices[name] = ohlcvSeries
+                        .Select(ohlcv => new KeyValuePair<DateTime, double>(ohlcv.DateTime, ohlcv.OpenPrice))
+                        .ToDictionary();
+                    backtestService.HighPrices[name] = ohlcvSeries
+                        .Select(ohlcv => new KeyValuePair<DateTime, double>(ohlcv.DateTime, ohlcv.HighPrice))
+                        .ToDictionary();
+                    backtestService.LowPrices[name] = ohlcvSeries
+                        .Select(ohlcv => new KeyValuePair<DateTime, double>(ohlcv.DateTime, ohlcv.LowPrice))
+                        .ToDictionary();
+                    backtestService.ClosePrices[name] = ohlcvSeries
+                        .Select(ohlcv => new KeyValuePair<DateTime, double>(ohlcv.DateTime, ohlcv.ClosePrice))
+                        .ToDictionary();
+                    backtestService.Volumes[name] = ohlcvSeries
+                        .Select(ohlcv => new KeyValuePair<DateTime, double>(ohlcv.DateTime, ohlcv.Volume))
+                        .ToDictionary();
+                }
+            );
             tasks.Add(task);
         }
         await Task.WhenAll(tasks);

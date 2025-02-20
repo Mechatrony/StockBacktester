@@ -10,7 +10,7 @@ namespace StockBacktester.Crypto;
 public class Coin(CoinInfo coinInfo, int leverage)
 {
     private static readonly StrategyBase strategy = App.GetService<CoinPageViewModel>().SelectedStrategy;
-    private static readonly BacktestService backtestService = new();
+    private static readonly BacktestService backtestService = App.GetService<BacktestService>();
 
     public static double MarketFeeRate { get; set; } = 0.0005d;
     public static double LimitFeeRate { get; set; } = 0.0002d;

@@ -72,6 +72,8 @@ public partial class MainPageViewModel : ObservableObject
         this.fileService = fileService;
         this.exchangeService = exchangeService;
         this.backtestService = backtestService;
+        this.backtestResultViewModel = new BacktestResultViewModel();
+        this.backtestDetailsViewModel = new BacktestDetailsViewModel(backtestService);
 
         this.exchangeService.Register<BinanceClient>();
         this.exchangeService.Exchange = CoinExchange.BinanceFutures;

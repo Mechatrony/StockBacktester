@@ -20,9 +20,9 @@ public class FourHmaStrategy : StrategyBase
         : base(backtestService, exchangeService)
     {
         Title = "4 HMA";
-        TargetCoins = "BTC,ETH";
+        TargetCoins = "BTC";
         Timeframe = Timeframe.OneDay;
-        StartDate = new DateTime(2023, 1, 1);
+        StartDate = new DateTime(2024, 1, 1);
         TestDays = (DateTime.Now - StartDate).Days + 1;
 
         ShowDefaultParameters();
