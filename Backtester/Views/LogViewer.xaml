@@ -9,7 +9,6 @@
   xmlns:models="using:Backtester.Models"
   xmlns:sys="using:System"
   xmlns:interact="using:Microsoft.Xaml.Interactivity"
-  xmlns:interactcore="using:Microsoft.Xaml.Interactions.Core"
   xmlns:behaviors="using:Backtester.Behaviors"
   xmlns:converters="using:Backtester.Converters"
   mc:Ignorable="d"
@@ -40,34 +39,34 @@
           Margin="5 0 0 0">
           <interact:Interaction.Behaviors>
             <!--Info-->
-            <interactcore:DataTriggerBehavior
+            <interact:DataTriggerBehavior
               Binding="{Binding LogLevel, Mode=OneTime, Converter={StaticResource EnumToStringConverter}}"
               Value="Info">
-              <interactcore:ChangePropertyAction
+              <interact:ChangePropertyAction
                 TargetObject="{Binding ElementName=LogContentTextBox}"
                 PropertyName="Foreground" Value="{ThemeResource TextFillColorPrimary}"/>
-            </interactcore:DataTriggerBehavior>
+            </interact:DataTriggerBehavior>
             
             <!--Warn-->
-            <interactcore:DataTriggerBehavior
+            <interact:DataTriggerBehavior
               Binding="{Binding LogLevel, Mode=OneTime, Converter={StaticResource EnumToStringConverter}}"
               Value="Warn">
-              <interactcore:ChangePropertyAction
+              <interact:ChangePropertyAction
                 TargetObject="{Binding ElementName=LogContentTextBox}"
                 PropertyName="Foreground" Value="Yellow"/>
-            </interactcore:DataTriggerBehavior>
+            </interact:DataTriggerBehavior>
 
             <!--Error-->
-            <interactcore:DataTriggerBehavior
+            <interact:DataTriggerBehavior
               Binding="{Binding LogLevel, Mode=OneTime, Converter={StaticResource EnumToStringConverter}}"
               Value="Error">
-              <interactcore:ChangePropertyAction
+              <interact:ChangePropertyAction
                 TargetObject="{Binding ElementName=LogContentTextBox}"
                 PropertyName="Foreground" Value="Red"/>
-              <interactcore:ChangePropertyAction
+              <interact:ChangePropertyAction
                 TargetObject="{Binding ElementName=LogContentTextBox}"
                 PropertyName="FontWeight" Value="Bold"/>
-            </interactcore:DataTriggerBehavior>
+            </interact:DataTriggerBehavior>
           </interact:Interaction.Behaviors>
         </TextBox>
       </Grid>
