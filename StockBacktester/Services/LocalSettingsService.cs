@@ -1,14 +1,14 @@
 ﻿using Microsoft.Extensions.Options;
-using StockBacktester.Contracts.Services;
-using StockBacktester.Helpers;
-using StockBacktester.Models;
+using Backtester.Contracts.Services;
+using Backtester.Helpers;
+using Backtester.Models;
 using Windows.Storage;
 
-namespace StockBacktester.Services;
+namespace Backtester.Services;
 
 public class LocalSettingsService : ILocalSettingsService
 {
-    private const string defaultApplicationDataFolder = "StockBacktester/ApplicationData";
+    private const string defaultApplicationDataFolder = "Backtester/ApplicationData";
     private const string defaultLocalSettingsFile = "LocalSettings.json";
 
     private readonly FileService fileService;

@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using StockBacktester.Contracts.Services;
-using StockBacktester.Views;
+using Backtester.Contracts.Services;
+using Backtester.Views;
 
-namespace StockBacktester.ViewModels;
+namespace Backtester.ViewModels;
 
 public partial class ShellViewModel : ObservableRecipient
 {

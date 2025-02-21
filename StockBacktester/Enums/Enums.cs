@@ -1,4 +1,4 @@
-﻿namespace StockBacktester.Enums;
+﻿namespace Backtester.Enums;
 
 public enum StrategyParameterType
 {

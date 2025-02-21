@@ -1,9 +1,9 @@
 ﻿using Microsoft.UI.Xaml;
 
-using StockBacktester.Contracts.Services;
-using StockBacktester.Helpers;
+using Backtester.Contracts.Services;
+using Backtester.Helpers;
 
-namespace StockBacktester.Services;
+namespace Backtester.Services;
 
 public class ThemeSelectorService : IThemeSelectorService
 {

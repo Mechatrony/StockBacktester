@@ -1,12 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using StockBacktester.Views;
+using Backtester.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StockBacktester.ViewModels;
+namespace Backtester.ViewModels;
 
 public partial class IndicatorViewModel : ObservableObject
 {

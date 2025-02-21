@@ -1,6 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 
-namespace StockBacktester.Contracts.Services;
+namespace Backtester.Contracts.Services;
 
 public interface INavigationViewService
 {

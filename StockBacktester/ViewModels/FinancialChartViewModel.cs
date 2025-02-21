@@ -1,12 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using StockBacktester.Crypto;
+using Backtester.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StockBacktester.ViewModels;
+namespace Backtester.ViewModels;
 
 public partial class FinancialChartViewModel : ObservableObject
 {

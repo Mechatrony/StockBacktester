@@ -1,6 +1,6 @@
 ﻿using Microsoft.Windows.ApplicationModel.Resources;
 
-namespace StockBacktester.Helpers;
+namespace Backtester.Helpers;
 
 public static class ResourceExtensions
 {

@@ -1,17 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
-using StockBacktester.Crypto;
-using StockBacktester.Crypto.Exchange;
-using StockBacktester.Crypto.Strategies;
-using StockBacktester.Models;
-using StockBacktester.Services;
-using StockBacktester.Utils;
+using Backtester.Crypto;
+using Backtester.Crypto.Exchange;
+using Backtester.Crypto.Strategies;
+using Backtester.Models;
+using Backtester.Services;
+using Backtester.Utils;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 
-namespace StockBacktester.ViewModels.Pages;
+namespace Backtester.ViewModels.Pages;
 
 public partial class MainPageViewModel : ObservableObject
 {

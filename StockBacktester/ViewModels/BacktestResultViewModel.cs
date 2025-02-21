@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using OxyPlot;
-using StockBacktester.Crypto;
+using Backtester.Crypto;
 using System.Collections.ObjectModel;
 
-namespace StockBacktester.ViewModels;
+namespace Backtester.ViewModels;
 
 public partial class BacktestResultViewModel : ObservableObject
 {

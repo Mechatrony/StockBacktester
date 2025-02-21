@@ -1,7 +1,7 @@
-﻿using StockBacktester.Crypto;
+﻿using Backtester.Crypto;
 using System.Collections.ObjectModel;
 
-namespace StockBacktester.Utils;
+namespace Backtester.Utils;
 
 public static class UserUtil
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StockBacktester.Utils;
+namespace Backtester.Utils;
 
 public static class MathUtils
 {

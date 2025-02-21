@@ -1,9 +1,9 @@
 ﻿{
     "profiles": {
-      "StockBacktester (Package)": {
+      "Backtester (Package)": {
         "commandName": "MsixPackage"
       },
-      "StockBacktester (Unpackaged)": {
+      "Backtester (Unpackaged)": {
         "commandName": "Project"
       }
     }

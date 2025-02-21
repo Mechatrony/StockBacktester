@@ -1,8 +1,8 @@
 ﻿using Microsoft.UI.Dispatching;
-using StockBacktester.Helpers;
+using Backtester.Helpers;
 using Windows.UI.ViewManagement;
 
-namespace StockBacktester;
+namespace Backtester;
 
 public sealed partial class MainWindow : WindowEx
 {

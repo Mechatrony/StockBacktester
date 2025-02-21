@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Meziantou.Framework.WPF.Collections;
-using StockBacktester.Models;
+using Backtester.Models;
 
-namespace StockBacktester.ViewModels;
+namespace Backtester.ViewModels;
 
 public class LogViewerViewModel : ObservableObject
 {

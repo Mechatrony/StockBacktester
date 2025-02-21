@@ -3,9 +3,9 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
 
-using StockBacktester.Contracts.Services;
+using Backtester.Contracts.Services;
 
-namespace StockBacktester.Behaviors;
+namespace Backtester.Behaviors;
 
 public class NavigationViewHeaderBehavior : Behavior<NavigationView>
 {

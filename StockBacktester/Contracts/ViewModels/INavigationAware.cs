@@ -1,4 +1,4 @@
-﻿namespace StockBacktester.Contracts.ViewModels;
+﻿namespace Backtester.Contracts.ViewModels;
 
 public interface INavigationAware
 {

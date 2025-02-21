@@ -1,10 +1,10 @@
 ﻿using Microsoft.UI.Xaml.Controls;
-using StockBacktester.Contracts.Services;
-using StockBacktester.Helpers;
-using StockBacktester.ViewModels.Pages;
+using Backtester.Contracts.Services;
+using Backtester.Helpers;
+using Backtester.ViewModels.Pages;
 using System.Diagnostics.CodeAnalysis;
 
-namespace StockBacktester.Services;
+namespace Backtester.Services;
 
 public class NavigationViewService : INavigationViewService
 {

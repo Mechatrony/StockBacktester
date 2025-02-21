@@ -18,7 +18,7 @@
   <mp:PhoneIdentity PhoneProductId="907bd184-3c33-4dfa-863f-2d5f7152b273" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
     
   <Properties>
-    <DisplayName>StockBacktester</DisplayName>
+    <DisplayName>Backtester</DisplayName>
     <PublisherDisplayName>OH</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>

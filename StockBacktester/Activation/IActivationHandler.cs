@@ -1,4 +1,4 @@
-﻿namespace StockBacktester.Activation;
+﻿namespace Backtester.Activation;
 
 public interface IActivationHandler
 {

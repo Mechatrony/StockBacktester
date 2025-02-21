@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Controls;
-using StockBacktester.ViewModels.Pages;
+using Backtester.ViewModels.Pages;
 
-namespace StockBacktester.Views;
+namespace Backtester.Views;
 
 public sealed partial class MainPage : Page
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace StockBacktester.Crypto;
+namespace Backtester.Crypto;
 
 public enum CoinExchange
 {

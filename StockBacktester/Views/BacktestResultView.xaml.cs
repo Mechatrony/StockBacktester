@@ -1,6 +1,6 @@
 using Microsoft.UI.Xaml.Controls;
 
-namespace StockBacktester.Views;
+namespace Backtester.Views;
 
 public sealed partial class BacktestResultView : UserControl
 {

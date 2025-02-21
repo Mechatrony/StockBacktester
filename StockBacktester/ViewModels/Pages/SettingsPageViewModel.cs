@@ -1,13 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
-using StockBacktester.Contracts.Services;
-using StockBacktester.Helpers;
+using Backtester.Contracts.Services;
+using Backtester.Helpers;
 using System.Reflection;
 using System.Windows.Input;
 using Windows.ApplicationModel;
 
-namespace StockBacktester.ViewModels.Pages;
+namespace Backtester.ViewModels.Pages;
 
 public partial class SettingsPageViewModel : ObservableObject
 {

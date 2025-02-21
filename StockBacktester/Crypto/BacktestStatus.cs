@@ -1,4 +1,4 @@
-﻿namespace StockBacktester.Crypto;
+﻿namespace Backtester.Crypto;
 
 public class BacktestStatus
 {

@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Controls;
-using StockBacktester.Contracts.Services;
-using StockBacktester.ViewModels.Pages;
-using StockBacktester.Views;
+using Backtester.Contracts.Services;
+using Backtester.ViewModels.Pages;
+using Backtester.Views;
 
-namespace StockBacktester.Services;
+namespace Backtester.Services;
 
 public class PageService : IPageService
 {

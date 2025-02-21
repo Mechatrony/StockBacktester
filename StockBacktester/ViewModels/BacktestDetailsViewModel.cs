@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using StockBacktester.Crypto;
-using StockBacktester.Services;
+using Backtester.Crypto;
+using Backtester.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StockBacktester.ViewModels;
+namespace Backtester.ViewModels;
 
 public partial class BacktestDetailsViewModel : ObservableObject
 {

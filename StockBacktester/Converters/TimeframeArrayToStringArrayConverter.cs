@@ -1,5 +1,5 @@
-﻿using StockBacktester.Crypto;
-using StockBacktester.Utils;
+﻿using Backtester.Crypto;
+using Backtester.Utils;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace StockBacktester.Converters;
+namespace Backtester.Converters;
 
 internal class TimeframeArrayToStringArrayConverter : IValueConverter
 {

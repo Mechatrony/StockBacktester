@@ -1,6 +1,6 @@
 ﻿using Meziantou.Framework.WPF.Collections;
 
-namespace StockBacktester.Models;
+namespace Backtester.Models;
 
 public enum LogLevel
 {

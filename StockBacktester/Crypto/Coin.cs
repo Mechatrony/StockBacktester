@@ -1,10 +1,10 @@
-﻿using StockBacktester.Crypto.Strategies;
-using StockBacktester.Services;
-using StockBacktester.Utils;
-using StockBacktester.ViewModels.Pages;
+﻿using Backtester.Crypto.Strategies;
+using Backtester.Services;
+using Backtester.Utils;
+using Backtester.ViewModels.Pages;
 using System.Collections.Specialized;
 
-namespace StockBacktester.Crypto;
+namespace Backtester.Crypto;
 
 
 public class Coin(CoinInfo coinInfo, int leverage)

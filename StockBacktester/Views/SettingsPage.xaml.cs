@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Controls;
-using StockBacktester.ViewModels.Pages;
+using Backtester.ViewModels.Pages;
 
-namespace StockBacktester.Views;
+namespace Backtester.Views;
 
 // TODO: Set the URL for your privacy policy by updating SettingsPage_PrivacyTermsLink.NavigateUri in Resources.resw.
 public sealed partial class SettingsPage : Page

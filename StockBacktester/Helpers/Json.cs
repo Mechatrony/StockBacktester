@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace StockBacktester.Helpers;
+namespace Backtester.Helpers;
 
 // TODO: Delete this
 public static class Json

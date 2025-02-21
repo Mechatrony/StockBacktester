@@ -1,4 +1,4 @@
-﻿namespace StockBacktester.Crypto.Exchange;
+﻿namespace Backtester.Crypto.Exchange;
 
 public class ExchangeService
 {

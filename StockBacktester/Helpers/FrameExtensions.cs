@@ -1,6 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 
-namespace StockBacktester.Helpers;
+namespace Backtester.Helpers;
 
 public static class FrameExtensions
 {

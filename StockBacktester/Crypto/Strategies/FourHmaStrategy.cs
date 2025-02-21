@@ -1,9 +1,9 @@
-﻿using StockBacktester.Crypto.Exchange;
-using StockBacktester.Services;
-using StockBacktester.Utils;
-using StockBacktester.ViewModels;
+﻿using Backtester.Crypto.Exchange;
+using Backtester.Services;
+using Backtester.Utils;
+using Backtester.ViewModels;
 
-namespace StockBacktester.Crypto.Strategies;
+namespace Backtester.Crypto.Strategies;
 
 public class FourHmaStrategy : StrategyBase
 {

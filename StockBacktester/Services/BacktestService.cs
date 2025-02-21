@@ -1,7 +1,7 @@
-﻿using StockBacktester.Crypto;
-using StockBacktester.Crypto.Strategies;
+﻿using Backtester.Crypto;
+using Backtester.Crypto.Strategies;
 
-namespace StockBacktester.Services;
+namespace Backtester.Services;
 
 public class BacktestService
 {

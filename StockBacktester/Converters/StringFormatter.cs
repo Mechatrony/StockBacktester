@@ -1,6 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Data;
 
-namespace StockBacktester.Converters;
+namespace Backtester.Converters;
 
 public class StringFormatter : IValueConverter
 {

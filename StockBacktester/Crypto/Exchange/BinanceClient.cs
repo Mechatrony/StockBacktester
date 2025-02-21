@@ -2,16 +2,16 @@
 using Binance.Net.Enums;
 using Binance.Net.Interfaces;
 using CryptoExchange.Net.Objects;
-using StockBacktester.Models;
-using StockBacktester.Services;
-using StockBacktester.Utils;
+using Backtester.Models;
+using Backtester.Services;
+using Backtester.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StockBacktester.Crypto.Exchange;
+namespace Backtester.Crypto.Exchange;
 
 public class BinanceClient : ExchangeClient
 {

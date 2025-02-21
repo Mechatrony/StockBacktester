@@ -1,8 +1,8 @@
 ﻿using Microsoft.UI.Xaml;
-using StockBacktester.Contracts.Services;
-using StockBacktester.ViewModels.Pages;
+using Backtester.Contracts.Services;
+using Backtester.ViewModels.Pages;
 
-namespace StockBacktester.Activation;
+namespace Backtester.Activation;
 
 public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
 {

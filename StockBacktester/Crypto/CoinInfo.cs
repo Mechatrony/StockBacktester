@@ -1,4 +1,4 @@
-﻿namespace StockBacktester.Crypto;
+﻿namespace Backtester.Crypto;
 
 public class CoinInfo(string name, int amountPrecision, int pricePrecision, DateTime listingDate)
 {

@@ -1,4 +1,4 @@
-﻿namespace StockBacktester.Crypto;
+﻿namespace Backtester.Crypto;
 
 public class Ohlcv(DateTime dateTime, double open, double high, double low, double close, double volume)
 {

@@ -2,10 +2,10 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
-using StockBacktester.Models;
+using Backtester.Models;
 using System.Collections.Specialized;
 
-namespace StockBacktester.Behaviors;
+namespace Backtester.Behaviors;
 
 public class AddingListBoxBehavior : Behavior<ListBox>
 {

@@ -1,10 +1,10 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using StockBacktester.Activation;
-using StockBacktester.Contracts.Services;
-using StockBacktester.Views;
+using Backtester.Activation;
+using Backtester.Contracts.Services;
+using Backtester.Views;
 
-namespace StockBacktester.Services;
+namespace Backtester.Services;
 
 public class ActivationService : IActivationService
 {

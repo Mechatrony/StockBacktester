@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
-using StockBacktester.Crypto;
+using Backtester.Crypto;
 using System.Data;
 using System.Text;
 
-namespace StockBacktester.Services;
+namespace Backtester.Services;
 
 public class FileService
 {

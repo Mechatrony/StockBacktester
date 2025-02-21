@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
-namespace StockBacktester.Helpers;
+namespace Backtester.Helpers;
 
 // Helper class to set the navigation target for a NavigationViewItem.
 //

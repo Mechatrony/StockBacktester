@@ -1,12 +1,13 @@
 ﻿<Page
-  x:Class="StockBacktester.Views.ShellPage"
+  x:Class="Backtester.Views.ShellPage"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:helpers="using:StockBacktester.Helpers"
-  xmlns:behaviors="using:StockBacktester.Behaviors"
+  xmlns:helpers="using:Backtester.Helpers"
+  xmlns:behaviors="using:Backtester.Behaviors"
   xmlns:i="using:Microsoft.Xaml.Interactivity"
+  mc:Ignorable="d"
   Loaded="OnLoaded">
 
   <Grid>
@@ -49,14 +50,14 @@
         -->
         <NavigationViewItem
           x:Uid="Shell_Main"
-          helpers:NavigationHelper.NavigateTo="StockBacktester.ViewModels.Pages.MainPageViewModel">
+          helpers:NavigationHelper.NavigateTo="Backtester.ViewModels.Pages.MainPageViewModel">
           <NavigationViewItem.Icon>
             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;"/>
           </NavigationViewItem.Icon>
         </NavigationViewItem>
         <NavigationViewItem
           x:Uid="Shell_Coin"
-          helpers:NavigationHelper.NavigateTo="StockBacktester.ViewModels.Pages.CoinPageViewModel">
+          helpers:NavigationHelper.NavigateTo="Backtester.ViewModels.Pages.CoinPageViewModel">
           <NavigationViewItem.Icon>
             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;"/>
           </NavigationViewItem.Icon>

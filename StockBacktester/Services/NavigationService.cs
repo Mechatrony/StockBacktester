@@ -1,12 +1,12 @@
 ﻿using CommunityToolkit.WinUI.Animations;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using StockBacktester.Contracts.Services;
-using StockBacktester.Contracts.ViewModels;
-using StockBacktester.Helpers;
+using Backtester.Contracts.Services;
+using Backtester.Contracts.ViewModels;
+using Backtester.Helpers;
 using System.Diagnostics.CodeAnalysis;
 
-namespace StockBacktester.Services;
+namespace Backtester.Services;
 
 // For more information on navigation between pages see
 // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/navigation.md

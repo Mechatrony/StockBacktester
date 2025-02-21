@@ -1,4 +1,4 @@
-﻿namespace StockBacktester.Behaviors;
+﻿namespace Backtester.Behaviors;
 
 public enum NavigationViewHeaderMode
 {

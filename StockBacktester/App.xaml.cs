@@ -1,16 +1,16 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
-using StockBacktester.Activation;
-using StockBacktester.Contracts.Services;
-using StockBacktester.Crypto.Exchange;
-using StockBacktester.Models;
-using StockBacktester.Services;
-using StockBacktester.ViewModels;
-using StockBacktester.ViewModels.Pages;
-using StockBacktester.Views;
+using Backtester.Activation;
+using Backtester.Contracts.Services;
+using Backtester.Crypto.Exchange;
+using Backtester.Models;
+using Backtester.Services;
+using Backtester.ViewModels;
+using Backtester.ViewModels.Pages;
+using Backtester.Views;
 
-namespace StockBacktester;
+namespace Backtester;
 
 public partial class App : Application
 {

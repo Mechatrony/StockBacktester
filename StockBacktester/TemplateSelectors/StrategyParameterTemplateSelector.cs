@@ -1,5 +1,5 @@
-﻿using StockBacktester.Enums;
-using StockBacktester.ViewModels;
+﻿using Backtester.Enums;
+using Backtester.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace StockBacktester.TemplateSelectors;
+namespace Backtester.TemplateSelectors;
 
 public class StrategyParameterTemplateSelector : DataTemplateSelector
 {

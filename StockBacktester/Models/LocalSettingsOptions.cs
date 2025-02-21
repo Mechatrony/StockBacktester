@@ -1,4 +1,4 @@
-﻿namespace StockBacktester.Models;
+﻿namespace Backtester.Models;
 
 public class LocalSettingsOptions
 {

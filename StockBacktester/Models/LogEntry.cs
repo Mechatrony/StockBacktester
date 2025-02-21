@@ -1,4 +1,4 @@
-﻿namespace StockBacktester.Models;
+﻿namespace Backtester.Models;
 
 public class LogEntry(DateTime dateTime, string message, LogLevel logLevel)
 {

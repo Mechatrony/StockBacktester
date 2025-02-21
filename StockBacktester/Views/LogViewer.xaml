@@ -1,17 +1,17 @@
 <UserControl
-  x:Class="StockBacktester.Views.LogViewer"
+  x:Class="Backtester.Views.LogViewer"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:local="using:StockBacktester.Views"
+  xmlns:local="using:Backtester.Views"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:vm="using:StockBacktester.ViewModels"
-  xmlns:models="using:StockBacktester.Models"
+  xmlns:vm="using:Backtester.ViewModels"
+  xmlns:models="using:Backtester.Models"
   xmlns:sys="using:System"
   xmlns:interact="using:Microsoft.Xaml.Interactivity"
   xmlns:interactcore="using:Microsoft.Xaml.Interactions.Core"
-  xmlns:behaviors="using:StockBacktester.Behaviors"
-  xmlns:converters="using:StockBacktester.Converters"
+  xmlns:behaviors="using:Backtester.Behaviors"
+  xmlns:converters="using:Backtester.Converters"
   mc:Ignorable="d"
   d:DataContext="{d:DesignInstance vm:LogViewerViewModel}">
 

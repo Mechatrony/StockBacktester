@@ -1,12 +1,12 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using StockBacktester.Contracts.Services;
-using StockBacktester.Helpers;
-using StockBacktester.ViewModels;
+using Backtester.Contracts.Services;
+using Backtester.Helpers;
+using Backtester.ViewModels;
 using Windows.System;
 
-namespace StockBacktester.Views;
+namespace Backtester.Views;
 
 public sealed partial class ShellPage : Page
 {

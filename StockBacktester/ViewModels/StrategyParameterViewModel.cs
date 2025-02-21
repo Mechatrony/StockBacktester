@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using StockBacktester.Enums;
+using Backtester.Enums;
 
-namespace StockBacktester.ViewModels;
+namespace Backtester.ViewModels;
 
 public partial class StrategyParameterViewModel : ObservableObject
 {

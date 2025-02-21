@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
 
-namespace StockBacktester.Helpers;
+namespace Backtester.Helpers;
 
 public class RuntimeHelper
 {
