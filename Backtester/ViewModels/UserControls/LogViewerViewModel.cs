@@ -2,7 +2,7 @@
 using Meziantou.Framework.WPF.Collections;
 using Backtester.Models;
 
-namespace Backtester.ViewModels;
+namespace Backtester.ViewModels.UserControls;
 
 public class LogViewerViewModel : ObservableObject
 {

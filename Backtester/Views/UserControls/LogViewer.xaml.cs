@@ -1,7 +1,7 @@
 using Microsoft.UI.Xaml.Controls;
-using Backtester.ViewModels;
+using Backtester.ViewModels.UserControls;
 
-namespace Backtester.Views;
+namespace Backtester.Views.UserControls;
 
 public sealed partial class LogViewer : UserControl
 {

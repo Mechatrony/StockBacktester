@@ -3,7 +3,7 @@ using OxyPlot;
 using Backtester.Crypto;
 using System.Collections.ObjectModel;
 
-namespace Backtester.ViewModels;
+namespace Backtester.ViewModels.UserControls;
 
 public partial class BacktestResultViewModel : ObservableObject
 {

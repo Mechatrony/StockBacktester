@@ -2,11 +2,11 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Backtester.Contracts.Services;
-using Backtester.Views;
+using Backtester.Views.Pages;
 
-namespace Backtester.ViewModels;
+namespace Backtester.ViewModels.Pages;
 
-public partial class ShellViewModel : ObservableRecipient
+public partial class ShellPageViewModel : ObservableRecipient
 {
     [ObservableProperty]
     private bool isBackEnabled;
@@ -16,7 +16,7 @@ public partial class ShellViewModel : ObservableRecipient
     public INavigationService NavigationService { get; }
     public INavigationViewService NavigationViewService { get; }
 
-    public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
+    public ShellPageViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
     {
         NavigationService = navigationService;
         NavigationService.Navigated += OnNavigated;

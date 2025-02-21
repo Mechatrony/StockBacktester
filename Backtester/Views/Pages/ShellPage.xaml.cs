@@ -3,16 +3,16 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Backtester.Contracts.Services;
 using Backtester.Helpers;
-using Backtester.ViewModels;
+using Backtester.ViewModels.Pages;
 using Windows.System;
 
-namespace Backtester.Views;
+namespace Backtester.Views.Pages;
 
 public sealed partial class ShellPage : Page
 {
-    public ShellViewModel ViewModel { get; }
+    public ShellPageViewModel ViewModel { get; }
 
-    public ShellPage(ShellViewModel shellViewModel)
+    public ShellPage(ShellPageViewModel shellViewModel)
     {
         ViewModel = shellViewModel;
         InitializeComponent();

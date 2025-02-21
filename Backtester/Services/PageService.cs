@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using Backtester.Contracts.Services;
 using Backtester.ViewModels.Pages;
-using Backtester.Views;
+using Backtester.Views.Pages;
 
 namespace Backtester.Services;
 

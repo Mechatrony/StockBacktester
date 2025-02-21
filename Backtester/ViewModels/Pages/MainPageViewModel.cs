@@ -10,6 +10,7 @@ using Backtester.Utils;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using Backtester.ViewModels.UserControls;
 
 namespace Backtester.ViewModels.Pages;
 
@@ -19,7 +20,6 @@ public partial class MainPageViewModel : ObservableObject
     private readonly ExchangeService exchangeService;
     private readonly BacktestService backtestService;
     private BacktestResultViewModel? backtestResultViewModel;
-    private BacktestDetailsViewModel? backtestDetailsViewModel;
 
     [ObservableProperty]
     private StrategyBase selectedStrategy;
@@ -73,7 +73,6 @@ public partial class MainPageViewModel : ObservableObject
         this.exchangeService = exchangeService;
         this.backtestService = backtestService;
         this.backtestResultViewModel = new BacktestResultViewModel();
-        this.backtestDetailsViewModel = new BacktestDetailsViewModel(backtestService);
 
         this.exchangeService.Register<BinanceClient>();
         this.exchangeService.Exchange = CoinExchange.BinanceFutures;
@@ -238,7 +237,6 @@ public partial class MainPageViewModel : ObservableObject
         }
 
         backtestResultViewModel.BacktestDetails
-            = backtestDetailsViewModel.BacktestDetails
             = new ObservableCollection<BacktestStatus>(backtestService.BacktestDetails);
 
         // BTC RoR %
@@ -246,7 +244,7 @@ public partial class MainPageViewModel : ObservableObject
         var btcOhlcvs = backtestService.Ohlcvs["BTC"];
         int btcIndex = btcOhlcvs.FindIndex(x => x.DateTime == realStartTime);
         double initBtcPrice = btcOhlcvs[btcIndex].OpenPrice;
-        foreach (var detail in backtestDetailsViewModel.BacktestDetails)
+        foreach (var detail in backtestResultViewModel.BacktestDetails)
         {
             DateTime dateTime = detail.DateTime;
             double btcRor = (btcOhlcvs[btcIndex].ClosePrice / initBtcPrice - 1d) * 100d;
@@ -329,7 +327,7 @@ public partial class MainPageViewModel : ObservableObject
     [RelayCommand]
     private async Task RunRelayBacktest()
     {
-        if (backtestDetailsViewModel.BacktestDetails.Count == 0)
+        if (backtestResultViewModel.BacktestDetails.Count == 0)
             return;
 
         string[] names = TargetCoins.ToUpper().Split(',');
@@ -356,10 +354,10 @@ public partial class MainPageViewModel : ObservableObject
 
             ShowResult();
 
-            string startDate = backtestDetailsViewModel
+            string startDate = backtestResultViewModel
                 .BacktestDetails.First()
                 .DateTime.ToString("yy-MM-dd");
-            string endDate = backtestDetailsViewModel
+            string endDate = backtestResultViewModel
                 .BacktestDetails.Last()
                 .DateTime.ToString("yy-MM-dd");
 

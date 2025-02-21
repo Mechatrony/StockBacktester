@@ -8,7 +8,7 @@ using Backtester.Models;
 using Backtester.Services;
 using Backtester.ViewModels;
 using Backtester.ViewModels.Pages;
-using Backtester.Views;
+using Backtester.Views.Pages;
 
 namespace Backtester;
 
@@ -59,7 +59,7 @@ public partial class App : Application
 
                     // Views and ViewModels
                     services.AddTransient<ShellPage>();
-                    services.AddTransient<ShellViewModel>();
+                    services.AddTransient<ShellPageViewModel>();
                     services.AddTransient<SettingsPageViewModel>();
                     services.AddTransient<SettingsPage>();
                     services.AddTransient<MainPageViewModel>();

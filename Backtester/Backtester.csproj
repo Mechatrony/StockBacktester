@@ -72,4 +72,9 @@
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Views\UserControls\" />
+    <Folder Include="Views\Pages\" />
+  </ItemGroup>
 </Project>

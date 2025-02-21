@@ -1,5 +1,5 @@
 <UserControl
-  x:Class="Backtester.Views.LogViewer"
+  x:Class="Backtester.Views.UserControls.LogViewer"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:local="using:Backtester.Views"

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Backtester.ViewModels;
+namespace Backtester.ViewModels.UserControls;
 
 public partial class FinancialChartViewModel : ObservableObject
 {
