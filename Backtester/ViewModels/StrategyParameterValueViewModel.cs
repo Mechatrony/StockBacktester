@@ -12,23 +12,23 @@ namespace Backtester.ViewModels;
 public partial class StrategyParameterValueViewModel : ObservableObject
 {
     [ObservableProperty]
-    private string name;
+    public partial string Name { get; set; }
     [ObservableProperty]
-    private string displayName;
+    public partial string DisplayName { get; set; }
     [ObservableProperty]
-    private StrategyParameterType type;
+    public partial StrategyParameterType Type { get; set; }
     [ObservableProperty]
-    private string stringValue;
+    public partial string StringValue { get; set; }
     [ObservableProperty]
-    private DateTime dateTimeValue;
+    public partial DateTime DateTimeValue { get; set; }
     [ObservableProperty]
-    private int intValue;
+    public partial int IntValue { get; set; }
     [ObservableProperty]
-    private double doubleValue;
+    public partial double DoubleValue { get; set; }
     [ObservableProperty]
-    private double doublePercentValue;
+    public partial double DoublePercentValue { get; set; }
     [ObservableProperty]
-    private bool boolValue;
+    public partial bool BoolValue { get; set; }
 
     public StrategyParameterValueViewModel(string name, StrategyParameterType type, object value)
     {
@@ -81,21 +81,15 @@ public partial class StrategyParameterValueViewModel : ObservableObject
 
     public object GetValue()
     {
-        switch (Type)
+        return Type switch
         {
-            case StrategyParameterType.String:
-                return StringValue;
-            case StrategyParameterType.DateTime:
-                return DateTimeValue;
-            case StrategyParameterType.Int:
-                return IntValue;
-            case StrategyParameterType.Double:
-                return DoubleValue;
-            case StrategyParameterType.DoublePercent:
-                return DoublePercentValue;
-            case StrategyParameterType.Bool:
-                return BoolValue;
-        }
-        return null;
+            StrategyParameterType.String => StringValue,
+            StrategyParameterType.DateTime => DateTimeValue,
+            StrategyParameterType.Int => IntValue,
+            StrategyParameterType.Double => DoubleValue,
+            StrategyParameterType.DoublePercent => DoublePercentValue,
+            StrategyParameterType.Bool => BoolValue,
+            _ => throw new NotImplementedException(),
+        };
     }
 }

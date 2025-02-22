@@ -11,8 +11,7 @@ namespace Backtester.ViewModels.Pages;
 public partial class CoinPageViewModel : ObservableObject
 {
     [ObservableProperty]
-    private string title = "Coin Page";
-
+    public partial string Title { get; set; } = "Coin Page";
     [ObservableProperty]
-    private StrategyBase? selectedStrategy;
+    public partial StrategyBase? SelectedStrategy { get; set; }
 }

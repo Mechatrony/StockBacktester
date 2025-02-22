@@ -8,23 +8,17 @@ using System.Threading.Tasks;
 
 namespace Backtester.ViewModels.UserControls;
 
-public partial class FinancialChartViewModel : ObservableObject
+public partial class FinancialChartViewModel(string title, List<Ohlcv> ohlcvs) : ObservableObject
 {
     [ObservableProperty]
-    private string title = string.Empty;
+    public partial string Title { get; set; } = title;
     [ObservableProperty]
-    private List<Ohlcv> ohlcvs;
+    public partial List<Ohlcv> Ohlcvs { get; set; } = ohlcvs;
     [ObservableProperty]
-    private List<IndicatorViewModel> indicators = new();
+    public partial List<IndicatorViewModel> Indicators { get; set; } = new();
 
     public IndicatorViewModel? Indicator1 => Indicators.ElementAtOrDefault(0);
     public IndicatorViewModel? Indicator2 => Indicators.ElementAtOrDefault(1);
     public IndicatorViewModel? Indicator3 => Indicators.ElementAtOrDefault(2);
     public IndicatorViewModel? Indicator4 => Indicators.ElementAtOrDefault(3);
-
-    public FinancialChartViewModel(string title, List<Ohlcv> ohlcvs)
-    {
-        Title = title;
-        Ohlcvs = ohlcvs;
-    }
 }

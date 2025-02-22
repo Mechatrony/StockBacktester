@@ -6,7 +6,7 @@ namespace Backtester.ViewModels;
 public partial class StrategyParameterViewModel : ObservableObject
 {
     [ObservableProperty]
-    private StrategyParameterValueViewModel value;
+    public partial StrategyParameterValueViewModel Value { get; set; }
 
     public StrategyParameterViewModel(string name, object value, StrategyParameterType type = StrategyParameterType.None)
     {
@@ -36,6 +36,10 @@ public partial class StrategyParameterViewModel : ObservableObject
         else if (value is bool boolValue)
         {
             Value = new(name, StrategyParameterType.Bool, boolValue);
+        }
+        else
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -67,6 +71,10 @@ public partial class StrategyParameterViewModel : ObservableObject
         else if (value is bool boolValue)
         {
             Value = new(name, displayName, StrategyParameterType.Bool, boolValue);
+        }
+        else
+        {
+            throw new NotImplementedException();
         }
     }
 

@@ -4,38 +4,16 @@ using Microsoft.UI.Xaml;
 using Backtester.Contracts.Services;
 using Backtester.Helpers;
 using System.Reflection;
-using System.Windows.Input;
 using Windows.ApplicationModel;
 
 namespace Backtester.ViewModels.Pages;
 
-public partial class SettingsPageViewModel : ObservableObject
+public partial class SettingsPageViewModel(IThemeSelectorService themeSelectorService) : ObservableObject
 {
-    private readonly IThemeSelectorService themeSelectorService;
-
     [ObservableProperty]
-    private ElementTheme elementTheme;
+    public partial ElementTheme ElementTheme { get; set; } = themeSelectorService.Theme;
     [ObservableProperty]
-    private string versionDescription;
-
-    public ICommand SwitchThemeCommand { get; }
-
-    public SettingsPageViewModel(IThemeSelectorService themeSelectorService)
-    {
-        this.themeSelectorService = themeSelectorService;
-        elementTheme = this.themeSelectorService.Theme;
-        versionDescription = GetVersionDescription();
-
-        SwitchThemeCommand = new RelayCommand<ElementTheme>(
-            async (param) =>
-            {
-                if (ElementTheme != param)
-                {
-                    ElementTheme = param;
-                    await this.themeSelectorService.SetThemeAsync(param);
-                }
-            });
-    }
+    public partial string VersionDescription { get; set; } = GetVersionDescription();
 
     private static string GetVersionDescription()
     {
@@ -56,5 +34,15 @@ public partial class SettingsPageViewModel : ObservableObject
         }
 
         return $"{"AppDisplayName".GetLocalized()} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+    }
+
+    [RelayCommand]
+    private async Task SwitchTheme(ElementTheme theme)
+    {
+        if (ElementTheme != theme)
+        {
+            ElementTheme = theme;
+            await themeSelectorService.SetThemeAsync(theme);
+        }
     }
 }

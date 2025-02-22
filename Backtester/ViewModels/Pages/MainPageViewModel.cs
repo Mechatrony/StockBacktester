@@ -22,30 +22,30 @@ public partial class MainPageViewModel : ObservableObject
     private BacktestResultViewModel? backtestResultViewModel;
 
     [ObservableProperty]
-    private StrategyBase selectedStrategy;
+    public partial StrategyBase SelectedStrategy { get; set; }
     [ObservableProperty]
-    private ObservableCollection<StrategyBase> strategies = [];
+    public partial ObservableCollection<StrategyBase> Strategies { get; set; } = [];
     [ObservableProperty]
-    private ObservableCollection<CoinExchange> exchanges =
+    public partial ObservableCollection<CoinExchange> Exchanges { get; set; } =
     [
         CoinExchange.BinanceFutures,
         CoinExchange.BinanceSpot
     ];
     [ObservableProperty]
-    private CoinExchange selectedExchange = CoinExchange.BinanceFutures;
+    public partial CoinExchange SelectedExchange { get; set; } = CoinExchange.BinanceFutures;
 
     [ObservableProperty]
-    private ObservableCollection<StrategyParameterViewModel> majorParameters = new();
+    public partial ObservableCollection<StrategyParameterViewModel> MajorParameters { get; set; } = new();
     [ObservableProperty]
-    private ObservableCollection<StrategyParameterViewModel> minorParameters = new();
+    public partial ObservableCollection<StrategyParameterViewModel> MinorParameters { get; set; } = new();
     [ObservableProperty]
-    private ObservableCollection<StrategyParameterViewModel> strategyParameters = new();
+    public partial ObservableCollection<StrategyParameterViewModel> StrategyParameters { get; set; } = new();
 
     // MajorParameters
     [ObservableProperty]
-    private string targetCoins = "BTC";
+    public partial string TargetCoins { get; set; } = "BTC";
     [ObservableProperty]
-    private Timeframe timeframe = Timeframe.EightHours;
+    public partial Timeframe Timeframe { get; set; } = Timeframe.EightHours;
 
     public List<Timeframe> Timeframes = new List<Timeframe>()
     {
@@ -191,13 +191,13 @@ public partial class MainPageViewModel : ObservableObject
         {
             for (int indicatorIndex = 0; indicatorIndex < 4; ++indicatorIndex)
             {
-                var indicator = new IndicatorViewModel { CoinName = "BTC" };
+                IndicatorViewModel indicator = new IndicatorViewModel("BTC");
                 if (indicatorIndex < btcIndicators.Count)
                 {
                     indicator.IndicatorName = btcIndicators.ElementAt(indicatorIndex).Key;
                     indicator.Data = btcIndicators.ElementAt(indicatorIndex).Value
-                      .SkipWhile(kvp => !kvp.Key.InRange(realStartTime, realEndTime))
-                      .ToDictionary();
+                        .SkipWhile(kvp => !kvp.Key.InRange(realStartTime, realEndTime))
+                        .ToDictionary();
                 }
                 btcChartViewModel.Indicators.Add(indicator);
             }
@@ -211,7 +211,7 @@ public partial class MainPageViewModel : ObservableObject
             string coinName = ohlcvPair.Key;
             if (coinName == "BTC") continue;
 
-            var ohlcvSeries = ohlcvPair.Value
+            List<Ohlcv> ohlcvSeries = ohlcvPair.Value
                 .SkipWhile(kvp => !kvp.DateTime.InRange(realStartTime, realEndTime))
                 .ToList();
             FinancialChartViewModel financialChartViewModel = new FinancialChartViewModel(coinName, ohlcvSeries);
@@ -221,13 +221,13 @@ public partial class MainPageViewModel : ObservableObject
             {
                 for (int indicatorIndex = 0; indicatorIndex < 4; ++indicatorIndex)
                 {
-                    var indicator = new IndicatorViewModel { CoinName = coinName };
+                    IndicatorViewModel indicator = new IndicatorViewModel(coinName);
                     if (indicatorIndex < indicators.Count)
                     {
                         indicator.IndicatorName = indicators.ElementAt(indicatorIndex).Key;
                         indicator.Data = indicators.ElementAt(indicatorIndex).Value
-                          .SkipWhile(kvp => !kvp.Key.InRange(realStartTime, realEndTime))
-                          .ToDictionary();
+                            .SkipWhile(kvp => !kvp.Key.InRange(realStartTime, realEndTime))
+                            .ToDictionary();
                     }
                     financialChartViewModel.Indicators.Add(indicator);
                 }
@@ -388,6 +388,7 @@ public partial class MainPageViewModel : ObservableObject
     [RelayCommand]
     private async Task Test()
     {
+        Logger.Log("Hello");
         await Task.CompletedTask;
     }
 }

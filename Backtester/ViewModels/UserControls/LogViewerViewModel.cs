@@ -4,11 +4,7 @@ using Backtester.Models;
 
 namespace Backtester.ViewModels.UserControls;
 
-public class LogViewerViewModel : ObservableObject
+public partial class LogViewerViewModel : ObservableObject
 {
     public static IReadOnlyObservableCollection<LogEntry> LogEntries => Logger.LogEntries.AsObservable;
-
-    public LogViewerViewModel()
-    {
-    }
 }

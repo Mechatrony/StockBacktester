@@ -7,26 +7,14 @@ using System.Threading.Tasks;
 
 namespace Backtester.ViewModels;
 
-public partial class IndicatorViewModel : ObservableObject
+public partial class IndicatorViewModel(string coinName) : ObservableObject
 {
     [ObservableProperty]
-    private Dictionary<DateTime, double> data = new Dictionary<DateTime, double>();
+    public partial string CoinName { get; set; } = coinName;
     [ObservableProperty]
-    private string coinName = string.Empty;
+    public partial string IndicatorName { get; set; } = "";
     [ObservableProperty]
-    private string indicatorName = string.Empty;
+    public partial Dictionary<DateTime, double> Data { get; set; } = new();
     [ObservableProperty]
-    private bool isVisible = true;
-
-    public IndicatorViewModel(string coinName, string indicatorName, Dictionary<DateTime, double> data)
-    {
-        CoinName = coinName;
-        IndicatorName = indicatorName;
-        Data = data;
-    }
-
-    public IndicatorViewModel()
-    {
-
-    }
+    public partial bool IsVisible { get; set; } = true;
 }

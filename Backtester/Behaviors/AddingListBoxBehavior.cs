@@ -31,7 +31,7 @@ public class AddingListBoxBehavior : Behavior<ListBox>
 
     private void ItemsSource_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        if (AssociatedObject.Items.Count > 0)
+        if (AssociatedObject?.Items.Count > 0)
         {
             object item = AssociatedObject.Items.Last();
             AssociatedObject.ScrollIntoView(item);

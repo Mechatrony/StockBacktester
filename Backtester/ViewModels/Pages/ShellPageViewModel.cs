@@ -9,9 +9,9 @@ namespace Backtester.ViewModels.Pages;
 public partial class ShellPageViewModel : ObservableRecipient
 {
     [ObservableProperty]
-    private bool isBackEnabled;
+    public partial bool IsBackEnabled { get; set; }
     [ObservableProperty]
-    private object? selectedNavigationViewItem;
+    public partial object? SelectedNavigationViewItem { get; set; }
 
     public INavigationService NavigationService { get; }
     public INavigationViewService NavigationViewService { get; }

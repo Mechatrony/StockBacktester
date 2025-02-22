@@ -9,34 +9,34 @@ public partial class BacktestResultViewModel : ObservableObject
 {
     // TODO: Migrate Syncfusion to OxyPlot
     [ObservableProperty]
-    private ObservableCollection<PlotModel> plotModels = [];
+    public partial ObservableCollection<PlotModel> PlotModels { get; set; } = [];
 
     [ObservableProperty]
-    private ObservableCollection<FinancialChartViewModel> charts = new();
+    public partial ObservableCollection<FinancialChartViewModel> Charts { get; set; } = new();
     [ObservableProperty]
-    private ObservableCollection<BacktestStatus> backtestDetails = new();
+    public partial ObservableCollection<BacktestStatus> BacktestDetails { get; set; } = new();
     [ObservableProperty]
-    private Dictionary<DateTime, double> btcRorSeries = new();
+    public partial Dictionary<DateTime, double> BtcRorSeries { get; set; } = new();
     [ObservableProperty]
-    private double btcRor = 0;
+    public partial double BtcRor { get; set; } = 0;
     [ObservableProperty]
-    private double ror = 0;
+    public partial double Ror { get; set; } = 0;
     [ObservableProperty]
-    private double cagr = 0;
+    public partial double Cagr { get; set; } = 0;
     [ObservableProperty]
-    private double mdd = 0;
+    public partial double Mdd { get; set; } = 0;
     [ObservableProperty]
-    private double winRate = 0;
+    public partial double WinRate { get; set; } = 0;
     [ObservableProperty]
-    private int winCount = 0;
+    public partial int WinCount { get; set; } = 0;
     [ObservableProperty]
-    private int tradeCount = 0;
+    public partial int TradeCount { get; set; } = 0;
     [ObservableProperty]
-    private double pnlRatio = 0;
+    public partial double PnlRatio { get; set; } = 0;
     [ObservableProperty]
-    private double sharpe = 0;
+    public partial double Sharpe { get; set; } = 0;
     [ObservableProperty]
-    private double sortino = 0;
+    public partial double Sortino { get; set; } = 0;
     [ObservableProperty]
-    private double kelly = 0;
+    public partial double Kelly { get; set; } = 0;
 }

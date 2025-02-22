@@ -15,6 +15,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <UseRidGraph>true</UseRidGraph>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
