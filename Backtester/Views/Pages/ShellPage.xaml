@@ -7,7 +7,9 @@
   xmlns:helpers="using:Backtester.Helpers"
   xmlns:behaviors="using:Backtester.Behaviors"
   xmlns:i="using:Microsoft.Xaml.Interactivity"
+  xmlns:vm="using:Backtester.ViewModels.Pages"
   mc:Ignorable="d"
+  d:DataContext="{d:DesignInstance vm:ShellPageViewModel}"
   Loaded="OnLoaded">
 
   <Grid>
@@ -33,12 +35,12 @@
       x:Name="NavigationViewControl"
       Canvas.ZIndex="0"
       IsBackButtonVisible="Visible"
-      IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-      SelectedItem="{x:Bind ViewModel.SelectedNavigationViewItem, Mode=OneWay}"
+      IsBackEnabled="{Binding IsBackEnabled, Mode=OneWay}"
+      SelectedItem="{Binding SelectedNavigationViewItem, Mode=OneWay}"
       IsSettingsVisible="True"
       ExpandedModeThresholdWidth="1280"
       DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
-      Header="{x:Bind ((ContentControl)ViewModel.SelectedNavigationViewItem).Content, Mode=OneWay}">
+      Header="{Binding SelectedNavigationViewItem.Content, Mode=OneWay}">
 
       <NavigationView.MenuItems>
         <!--
@@ -74,13 +76,11 @@
 
       <i:Interaction.Behaviors>
         <behaviors:NavigationViewHeaderBehavior
-          DefaultHeader="{x:Bind ((ContentControl)ViewModel.SelectedNavigationViewItem).Content, Mode=OneWay}">
+          DefaultHeader="{Binding SelectedNavigationViewItem.Content, Mode=OneWay}">
           <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
             <DataTemplate>
               <Grid>
-                <TextBlock
-                  Text="{Binding}"
-                  Style="{ThemeResource TitleTextBlockStyle}" />
+                <TextBlock Text="{Binding}" Style="{ThemeResource TitleTextBlockStyle}" />
               </Grid>
             </DataTemplate>
           </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>

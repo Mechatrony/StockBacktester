@@ -6,7 +6,7 @@ using Backtester.Views.Pages;
 
 namespace Backtester.ViewModels.Pages;
 
-public partial class ShellPageViewModel : ObservableRecipient
+public partial class ShellPageViewModel : ObservableObject
 {
     [ObservableProperty]
     public partial bool IsBackEnabled { get; set; }

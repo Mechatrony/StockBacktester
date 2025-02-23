@@ -19,7 +19,7 @@ public partial class MainPageViewModel : ObservableObject
     private readonly FileService fileService;
     private readonly ExchangeService exchangeService;
     private readonly BacktestService backtestService;
-    private BacktestResultViewModel? backtestResultViewModel;
+    private readonly BacktestResultViewModel backtestResultViewModel = new();
 
     [ObservableProperty]
     public partial StrategyBase SelectedStrategy { get; set; }
@@ -72,7 +72,6 @@ public partial class MainPageViewModel : ObservableObject
         this.fileService = fileService;
         this.exchangeService = exchangeService;
         this.backtestService = backtestService;
-        this.backtestResultViewModel = new BacktestResultViewModel();
 
         this.exchangeService.Register<BinanceClient>();
         this.exchangeService.Exchange = CoinExchange.BinanceFutures;

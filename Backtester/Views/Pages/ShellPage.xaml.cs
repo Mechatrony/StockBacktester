@@ -10,15 +10,12 @@ namespace Backtester.Views.Pages;
 
 public sealed partial class ShellPage : Page
 {
-    public ShellPageViewModel ViewModel { get; }
-
     public ShellPage(ShellPageViewModel shellViewModel)
     {
-        ViewModel = shellViewModel;
         InitializeComponent();
 
-        ViewModel.NavigationService.Frame = NavigationFrame;
-        ViewModel.NavigationViewService.Initialize(NavigationViewControl);
+        shellViewModel.NavigationService.Frame = NavigationFrame;
+        shellViewModel.NavigationViewService.Initialize(NavigationViewControl);
 
         App.MainWindow.ExtendsContentIntoTitleBar = true;
         App.MainWindow.SetTitleBar(AppTitleBar);
